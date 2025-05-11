@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {HeaderComponent} from './components/header/header.component';
+import {RouterOutlet} from '@angular/router';
+import {FooterComponent} from './components/footer/footer.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [
+    HeaderComponent,
+    RouterOutlet,
+    FooterComponent,
+    NgIf
+  ],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'knowledge-sharing';
+  title = 'knowledge-exchange';
+  isLoggedIn = false; // Флаг для отображения меню после входа
+
+  onLoginSuccess(): void {
+    this.isLoggedIn = true;
+  }
 }

@@ -1,0 +1,176 @@
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 50px 0;
+  justify-content: space-between;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.hero-text p {
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.hero-text button {
+  background-color: #2196F3; /* Синий цвет */
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1em;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  display: inline-flex; /* Используем Flexbox */
+  align-items: center; /* Выравниваем элементы по вертикали */
+  justify-content: center; /* Выравниваем элементы по горизонтали */
+  gap: 8px; /* Расстояние между иконкой и текстом */
+  align-content: center;
+}
+
+.hero-text button:hover {
+  background-color: #1166D0;
+}
+
+.hero-text button mat-icon {
+  /* Дополнительные стили для иконки */
+  font-size: 24px; /* Размер иконки */
+}
+
+.hero-image {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Закругленные углы */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+/* Features Section */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 30px; /* Увеличение отступов */
+  border-radius: 12px; /* Увеличение скругления углов */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличение интенсивности тени */
+  background-color: #fff; /* Добавляем белый фон */
+}
+
+.feature-card mat-icon {
+  font-size: 50px; /* Увеличение размера иконки */
+  color: #007bff;
+  margin-bottom: 20px; /* Увеличение отступа */
+}
+
+.feature-card h3 {
+  font-size: 1.5em; /* Увеличение размера шрифта */
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.feature-card p {
+  font-size: 1.1em; /* Увеличение размера шрифта */
+  line-height: 1.4;
+  color: #555;
+}
+
+/* Contact Creator Section */
+.contact-creator {
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+  padding-top: 20px;
+}
+
+.contact-creator a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 5px; /* Отступы между ссылками */
+}
+
+.contact-creator a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries для адаптивности */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column; /* Перестраиваем hero section в колонку на маленьких экранах */
+    text-align: center;
+  }
+
+  .hero-image {
+    order: -1; /* Помещаем изображение перед текстом на маленьких экранах */
+  }
+
+  .features {
+    grid-template-columns: 1fr; /* Отображаем карточки в одну колонку на маленьких экранах */
+  }
+}
+
+.contact-creator a {
+  /*  Удалите все стили, которые влияют на размер иконки  */
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.contact-creator a mat-icon {
+  /*  Добавьте стили для управления размером иконки, если необходимо  */
+  vertical-align: middle; /* Выравниваем иконку по центру текста */
+  margin-right: 5px; /* Добавляем отступ между иконкой и текстом */
+}
+
+.contact-creator p {
+  margin-bottom: 10px; /* Добавляем отступ между ссылкой на создателя и кнопкой */
+}
+
+/* Стили для новых секций */
+.values,
+.opportunities,
+.support {
+  padding: 30px 0;
+  border-bottom: 1px solid #eee; /* Добавляем разделитель между секциями */
+}
+
+.values h2,
+.opportunities h2,
+.support h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.values p,
+.opportunities p,
+.support p {
+  line-height: 1.6;
+  color: #555;
+}
