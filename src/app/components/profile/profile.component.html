@@ -1,3 +1,33 @@
-<p>
-  profile works!
-</p>
+<mat-card class="profile-card">
+  <mat-card-header>
+    <mat-card-title>Профиль</mat-card-title>
+    <mat-card-subtitle>Информация о пользователе</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="profile-content">
+    <div class="profile-info">
+      <img mat-card-image [src]="user.avatarUrl" alt="Аватар пользователя" class="avatar">
+      <h3>{{ user.name }}</h3>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Роль:</strong> {{ user.role }}</p>
+      <p><strong>О себе:</strong> {{ user.bio || 'Пока ничего не указано' }}</p>
+    </div>
+
+    <div class="skills-section">
+      <h4>Навыки</h4>
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let skill of user.skills" color="primary" selected>
+          {{ skill }}
+        </mat-chip>
+        <mat-chip *ngIf="user.skills.length === 0" color="warn" disabled>
+          Нет добавленных навыков
+        </mat-chip>
+      </mat-chip-listbox>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button color="accent" (click)="editProfile()">Редактировать</button>
+    <button mat-raised-button color="warn" (click)="logout()">Выйти</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,14 +1,31 @@
 import { Component } from '@angular/core';
-import {MatIcon} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  imports: [
-    MatIcon,
-  ],
-  styleUrls: ['./about.component.css']
+  styleUrls: ['./about.component.css'],
+  standalone: true,
+  imports: [MatIconModule],
 })
 export class AboutComponent {
+  images: string[] = [
+    'assets/img1.jpg',
+    'assets/img2.jpg',
+    'assets/img3.jpg',
+  ];
 
+  currentSlide = 0;
+
+  showSlide(index: number): void {
+    this.currentSlide = index;
+  }
+
+  nextSlide(): void {
+    this.currentSlide = (this.currentSlide + 1) % this.images.length;
+  }
+
+  prevSlide(): void {
+    this.currentSlide = (this.currentSlide - 1 + this.images.length) % this.images.length;
+  }
 }

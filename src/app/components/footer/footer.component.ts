@@ -1,14 +1,25 @@
-import { Component } from '@angular/core';
-import {MatToolbar} from '@angular/material/toolbar';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-footer',
+  standalone: true,
   templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css'],
   imports: [
-    MatToolbar
-  ],
-  styleUrls: ['./footer.component.css']
+    MatToolbarModule,
+    MatIconModule,
+  ]
 })
 export class FooterComponent {
+  @ViewChild('locationModal') locationModal!: ElementRef;
 
+  showLocationModal() {
+    this.locationModal.nativeElement.style.display = 'flex';
+  }
+
+  closeLocationModal() {
+    this.locationModal.nativeElement.style.display = 'none';
+  }
 }

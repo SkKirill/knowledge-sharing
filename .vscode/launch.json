@@ -3,11 +3,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve",
-      "type": "chrome",
+      "name": "ng serve in Safari",
+      "type": "pwa-extensionHost",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
+      "preLaunchTask": "open-safari",
+      "skipFiles": ["<node_internals>/**"]
     },
     {
       "name": "ng test",

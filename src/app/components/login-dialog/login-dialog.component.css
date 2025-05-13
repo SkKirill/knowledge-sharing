@@ -1,8 +1,8 @@
 .auth-dialog-wrapper {
   background-color: #fff;
   border-radius: 6px;
-  padding: 32px 24px;
-  width: 400px;
+  padding: 25px 30px;
+  width: 450px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -11,34 +11,35 @@
 
 .auth-title {
   color: #24292e;
-  font-size: 20px;
-  margin-bottom: 24px;
+  font-size: 30px;
+  margin-bottom: 30px;
+  margin-top: -5px;
   font-weight: 600;
   text-align: center;
 }
 
-.auth-box {
-  width: 100%;
+.dialog-stage {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 15px;
 }
 
 .auth-label {
   color: #24292e;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   margin: 0 0 -4px 4px;
 }
 
-.auth-input {
+mat-form-field {
   width: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .auth-button {
-  background-color: #007bff;
+  background-color: #00aaff;
   color: white;
+  font-size: 15px;
   font-weight: 300;
   height: 40px;
   width: 100%;
@@ -47,5 +48,5 @@
 }
 
 .auth-button:hover {
-  background-color: #007bff;
+  background-color: #00aaffb1;
 }

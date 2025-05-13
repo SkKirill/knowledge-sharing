@@ -33,9 +33,10 @@ mat-toolbar {
 
 .header-wrapper {
   position: fixed;
-  width: 98%;
+  width: 99%; 
+  left: -1.5px ;
   padding-left: 10px;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 mat-button {

@@ -3,6 +3,13 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "open-safari",
+      "type": "shell",
+      "command": "open -a Safari http://localhost:4200",
+      "dependsOn": ["npm: start"],
+      "problemMatcher": []
+    },
+    {
       "type": "npm",
       "script": "start",
       "isBackground": true,

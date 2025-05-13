@@ -3,6 +3,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {RouterOutlet} from '@angular/router';
 import {FooterComponent} from './components/footer/footer.component';
 import {NgIf} from '@angular/common';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import {NgIf} from '@angular/common';
     HeaderComponent,
     RouterOutlet,
     FooterComponent,
-    NgIf
+    NgIf,
+    MatIconModule
   ],
   styleUrls: ['./app.component.css']
 })
@@ -21,5 +23,7 @@ export class AppComponent {
 
   onLoginSuccess(): void {
     this.isLoggedIn = true;
+
+    
   }
 }
