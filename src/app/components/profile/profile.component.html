@@ -1,33 +1,57 @@
-<mat-card class="profile-card">
-  <mat-card-header>
-    <mat-card-title>Профиль</mat-card-title>
-    <mat-card-subtitle>Информация о пользователе</mat-card-subtitle>
-  </mat-card-header>
+<div class="container">
+  <!-- Profile Block -->
+  <div class="card profile-card">
+    <div class="form-group">
+      <input type="file" accept="image/*">
+      <img src="assets/avatar-placeholder.png" class="profile-img" alt="Avatar">
+    </div>
+    <div class="form-group">
+      <label>Фамилия</label>
+      <input type="text" placeholder="Введите фамилию">
+    </div>
+    <div class="form-group">
+      <label>Имя</label>
+      <input type="text" placeholder="Введите имя">
+    </div>
+    <div class="form-group">
+      <label>Отчество</label>
+      <input type="text" placeholder="Введите отчество">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="Введите почту">
+    </div>
+    <div class="form-group">
+      <label>Телефон</label>
+      <input type="tel" placeholder="Введите номер телефона">
+    </div>
+    <button class="button">Сохранить</button>
+  </div>
 
-  <mat-card-content class="profile-content">
-    <div class="profile-info">
-      <img mat-card-image [src]="user.avatarUrl" alt="Аватар пользователя" class="avatar">
-      <h3>{{ user.name }}</h3>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Роль:</strong> {{ user.role }}</p>
-      <p><strong>О себе:</strong> {{ user.bio || 'Пока ничего не указано' }}</p>
+  <!-- Knowledge Blocks -->
+  <div class="knowledge-container">
+    <div class="card">
+      <div class="section-title">Хочу получить знания</div>
+      <ul class="item-list">
+        <li>
+          <input type="text" placeholder="Добавить знание">
+          <button>Удалить</button>
+        </li>
+        <!-- Добавлять динамически -->
+      </ul>
+      <button class="button">Добавить</button>
     </div>
 
-    <div class="skills-section">
-      <h4>Навыки</h4>
-      <mat-chip-listbox>
-        <mat-chip *ngFor="let skill of user.skills" color="primary" selected>
-          {{ skill }}
-        </mat-chip>
-        <mat-chip *ngIf="user.skills.length === 0" color="warn" disabled>
-          Нет добавленных навыков
-        </mat-chip>
-      </mat-chip-listbox>
+    <div class="card">
+      <div class="section-title">Хочу поделиться знаниями</div>
+      <ul class="item-list">
+        <li>
+          <input type="text" placeholder="Добавить знание">
+          <button>Удалить</button>
+        </li>
+        <!-- Добавлять динамически -->
+      </ul>
+      <button class="button">Добавить</button>
     </div>
-  </mat-card-content>
-
-  <mat-card-actions align="end">
-    <button mat-button color="accent" (click)="editProfile()">Редактировать</button>
-    <button mat-raised-button color="warn" (click)="logout()">Выйти</button>
-  </mat-card-actions>
-</mat-card>
+  </div>
+</div>

@@ -1,34 +1,97 @@
-.profile-card {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.profile-content {
+.container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Вертикальное выравнивание */
   gap: 20px;
+  align-items: center;  /* Центрируем профиль */
+  max-width: 1100px;
+  font-family: sans-serif;
+  padding: 100px;
 }
 
-.avatar {
+.profile-card {
+  width: 100%;
+
+}
+
+.knowledge-container {
+  display: flex;
+  justify-content: space-between;  /* Блоки знаний будут по краям */
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1 1 350px;
+  min-width: 350px;
+}
+
+.profile-img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  margin-bottom: 16px;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
-.skills-section {
-  margin-top: 10px;
+.form-group {
+  margin-bottom: 15px;
 }
 
-mat-chip-listbox {
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.section-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.item-list {
+  list-style: none;
+  padding: 0;
+}
+
+.item-list li {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
-mat-card-actions {
-  margin-top: 10px;
+.item-list input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.item-list button {
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
 }

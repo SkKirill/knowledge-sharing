@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
- // styleUrls: ['./profile.component.scss'],
+  styleUrls: ['./profile.component.css'],
   standalone: true,
   imports: [
     MatCardModule,
