@@ -9,7 +9,7 @@ import {NgIf} from '@angular/common';
   templateUrl: './login-dialog.component.html',
   imports: [
     MatFormField,
-    MatLabel,
+    MatLabel, 
     MatFormField,
     MatInputModule,
     MatLabel,
