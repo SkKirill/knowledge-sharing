@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import {MatFormField, MatLabel} from '@angular/material/input';
+import {MatFormField, MatInputModule, MatLabel} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
 
@@ -11,6 +11,7 @@ import {NgIf} from '@angular/common';
     MatFormField,
     MatLabel,
     MatFormField,
+    MatInputModule,
     MatLabel,
     MatFormField,
     FormsModule,
@@ -35,7 +36,7 @@ export class LoginDialogComponent {
     // В зависимости от ответа, установить this.isRegistering
     // Здесь пока просто пример
     if (this.email === 'test@example.com') {
-      this.isRegistering = false; // Пользователь входит
+      this.isRegistering = true; // Пользователь входит
     } else {
       this.isRegistering = true; // Пользователь регистрируется
     }

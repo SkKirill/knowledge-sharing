@@ -1,29 +1,29 @@
-<h1 mat-dialog-title class="dialog-header">Войти / Зарегистрироваться</h1>
+<div class="auth-dialog-wrapper">
+  <h1 class="auth-title">
+    {{ isRegistering ? 'Регистрация:' : 'Вход' }}
+  </h1>
 
-<div mat-dialog-content class="dialog-content">
-
-  <div *ngIf="stage === 1" class="dialog-stage">
-    <p class="dialog-text">Введите вашу почту:</p>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email">
+  <div *ngIf="stage === 1" class="auth-box">
+    <label class="auth-label" for="email">Введите вашу почту:</label>
+    <mat-form-field appearance="fill" class="auth-input">
+      <input matInput id="email" type="email" [(ngModel)]="email" placeholder="Введите почту"/>
     </mat-form-field>
-    <button mat-raised-button color="primary" class="dialog-button" (click)="submitEmail()">Продолжить</button>
+    <button mat-flat-button color="primary" class="auth-button" (click)="submitEmail()">Продолжить</button>
   </div>
 
-  <div *ngIf="stage === 2" class="dialog-stage">
-    <p class="dialog-text">{{ isRegistering ? 'Введите пароль для регистрации:' : 'Рады приветствовать! Введите пароль:' }}</p>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Пароль</mat-label>
-      <input matInput type="password" [(ngModel)]="password">
+  <div *ngIf="stage === 2" class="auth-box">
+    <label class="auth-label" for="password">
+      {{ isRegistering ? 'Введите пароль и подтвердите его:' : 'Введите пароль:' }}
+    </label>
+    <mat-form-field appearance="fill" class="auth-input">
+      <input matInput type="password" id="password" [(ngModel)]="password" placeholder="Введите пароль">
     </mat-form-field>
 
-    <mat-form-field *ngIf="isRegistering" appearance="outline" class="full-width">
-      <mat-label>Подтвердите пароль</mat-label>
-      <input matInput type="password">
+    <mat-form-field *ngIf="isRegistering" appearance="fill" class="auth-input">
+      <input matInput type="password" placeholder="Подтвердите пароль">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="dialog-button" (click)="submitPassword()">Подтвердить</button>
+    <button mat-flat-button color="primary" class="auth-button" (click)="submitPassword()">Подтвердить</button>
   </div>
 
 </div>
