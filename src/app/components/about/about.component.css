@@ -70,7 +70,7 @@
   color: #555;
   margin-bottom: 34px;
   }
-  
+
 
   .hero-center button {
     background-color: #00aaff !important; /* Принудительно синий фон */
@@ -86,12 +86,12 @@
     align-items: center;
     gap: 8px;
   }
-  
+
   .hero-center button:hover {
     background-color: #0090d0 !important;
     box-shadow: 0 8px 24px rgba(0, 170, 255, 0.4);
   }
-  
+
 .hero-side-img img {
   width: 200px;
   height: 200px;
@@ -136,7 +136,7 @@
 }
 
 
---------
+/*---------------------------------------------------------------------*/
 
 
 .how-it-works {
@@ -236,7 +236,7 @@
   }
 }
 
---------
+/*---------------------------------------------------------------------*/
 
 .section-title {
   font-size: 28px;
@@ -341,7 +341,7 @@
   position: relative;
   padding-bottom: 10px;
 }
-_____
+/*---------------------------------------------------------------------*/
 
 
 .features {
@@ -401,7 +401,7 @@ _____
   }
 }
 
-------
+/*---------------------------------------------------------------------*/
 
 
 .benefits-timeline {
@@ -431,7 +431,7 @@ _____
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 10px 10;
+  padding: 10px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -508,7 +508,7 @@ _____
   color: #ff7aa6e2;
 }
 
-------
+/*---------------------------------------------------------------------*/
 
 .timeline-container {
   text-align: center;
@@ -560,8 +560,7 @@ _____
   box-shadow: 0 1px 25px #00aaff52;
 }
 
--------
-
+/*---------------------------------------------------------------------*/
 
 .highlight-section {
   display: flex;
@@ -614,7 +613,9 @@ _____
   box-shadow: 0 1px 25px #00aaff52;
 }
 
-------
+/*---------------------------------------------------------------------*/
+
+
 /* Contact Creator Section */
 .contact-creator {
   text-align: center;

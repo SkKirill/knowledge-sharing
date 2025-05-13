@@ -1,11 +1,3 @@
-<mat-toolbar color="primary">
-  <span class="spacer"></span>
-  <button mat-button routerLink="/profile">Профиль</button>
-  <button mat-button routerLink="/exchange">Обмен</button>
-</mat-toolbar>
-
-<!-- Контент страницы здесь -->
-
 <footer class="main-footer">
   <section class="contact-creator">
     <p>Создано <a href="https://t.me/sk_kiriii" target="_blank">Анастасией Винокуровой</a></p>
@@ -35,19 +27,19 @@
       </button>
     </div>
   </footer>
-  
+
   <!-- Модальное окно -->
   <div class="modal-overlay" id="locationModal">
     <div class="modal">
       <button class="modal-close" onclick="closeLocationModal()">✖</button>
       <h2>Где вы находитесь?</h2>
       <p>Вы увидите услуги, доступные для вашего региона</p>
-  
+
       <div class="modal-section">
         <strong>Текущее местоположение</strong>
         <p>Воронежская обл / г Воронеж</p>
       </div>
-  
+
       <div class="modal-section">
         <strong>Выбор региона</strong>
         <div class="radio-group">
@@ -55,9 +47,9 @@
           <label><input type="radio" name="region"> Вручную</label>
         </div>
       </div>
-  
+
       <button class="modal-apply">Применить</button>
     </div>
   </div>
-  
+
 </footer>

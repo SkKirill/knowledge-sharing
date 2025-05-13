@@ -5,7 +5,16 @@
       <button mat-button>Описание</button>
       <button mat-button>Миссия</button>
       <span class="spacer"></span>
-      <button mat-button (click)="openLoginDialog()">Войти / Зарегистрироваться</button>
+
+      <div *ngIf="isLoggedIn">
+        <button mat-button routerLink="/profile">Профиль</button>
+        <button mat-button routerLink="/exchange">Обмен</button>
+      </div>
+
+      <button mat-button (click)="openLoginDialog()">
+        {{ isLoggedIn ? 'Выйти из профиля' : 'Войти | Зарегистрироваться' }}
+      </button>
+
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
