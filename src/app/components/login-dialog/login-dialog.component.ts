@@ -3,19 +3,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 import {MatFormField, MatInputModule, MatLabel} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
+import {MatButtonToggle} from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-login-dialog',
   templateUrl: './login-dialog.component.html',
   imports: [
     MatFormField,
-    MatLabel, 
+    MatLabel,
     MatFormField,
     MatInputModule,
     MatLabel,
     MatFormField,
     FormsModule,
-    NgIf
+    NgIf,
+    MatButtonToggle,
   ],
   styleUrls: ['./login-dialog.component.css']
 })

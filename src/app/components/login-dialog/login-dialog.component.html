@@ -4,17 +4,17 @@
   </h1>
 
   <div *ngIf="stage === 1" class="auth-box">
-    <label class="auth-label" for="email">Введите вашу почту:</label>
+    <mat-label class="auth-label" for="email">Введите вашу почту:</mat-label>
     <mat-form-field appearance="fill" class="auth-input">
       <input matInput id="email" type="email" [(ngModel)]="email" placeholder="Введите почту"/>
     </mat-form-field>
-    <button mat-flat-button color="primary" class="auth-button" (click)="submitEmail()">Продолжить</button>
+    <mat-button-toggle class="auth-button" (click)="submitEmail()">Продолжить</mat-button-toggle>
   </div>
 
   <div *ngIf="stage === 2" class="auth-box">
-    <label class="auth-label" for="password">
+    <mat-label class="auth-label" for="password">
       {{ isRegistering ? 'Введите пароль и подтвердите его:' : 'Введите пароль:' }}
-    </label>
+    </mat-label>
     <mat-form-field appearance="fill" class="auth-input">
       <input matInput type="password" id="password" [(ngModel)]="password" placeholder="Введите пароль">
     </mat-form-field>
@@ -23,7 +23,7 @@
       <input matInput type="password" placeholder="Подтвердите пароль">
     </mat-form-field>
 
-    <button mat-flat-button color="primary" class="auth-button" (click)="submitPassword()">Подтвердить</button>
+    <mat-button-toggle class="auth-button" (click)="submitPassword()">Подтвердить</mat-button-toggle>
   </div>
 
 </div>

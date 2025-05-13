@@ -5,6 +5,22 @@
   margin: 40px 0;
 }
 
+.mat-button-toggle {
+  background-color: #00aaff;
+  color: white;
+}
+
+/* Активная кнопка */
+.mat-button-toggle.mat-button-toggle-checked {
+  background-color: #00aaff;
+  color: #fff;
+}
+
+/* Наведение */
+.mat-button-toggle:hover {
+  background-color: #0090d0;
+}
+
 .icon-divider {
   display: flex;
   align-items: center;
