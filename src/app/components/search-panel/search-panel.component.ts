@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 interface UserProfile {
   id: string;
@@ -14,9 +13,16 @@ interface UserProfile {
 
 @Component({
   selector: 'app-search-panel',
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
+  ],
   templateUrl: './search-panel.component.html',
   styleUrls: ['./search-panel.component.css']
 })
+
 export class SearchPanelComponent {
   searchQuery = '';
   users: UserProfile[] = [
@@ -34,7 +40,6 @@ export class SearchPanelComponent {
   }
 
   selectUser(user: UserProfile) {
-    // TODO: уведомить компонент боковой панели о добавлении
     console.log('Пользователь выбран:', user);
   }
 }

@@ -1,0 +1,17 @@
+main {
+  min-height: calc(100vh - 120px); /* Учитываем высоту header и footer */
+  padding: 20px;
+}
+
+.login-prompt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  text-align: center;
+}
+
+.login-prompt p {
+  font-size: 1.2rem;
+  color: #666;
+}

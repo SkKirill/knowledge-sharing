@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
-  standalone: true, // Важно для Angular 14+
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
@@ -27,4 +26,4 @@ export class ChatComponent {
       this.currentChat = existingChat;
     }
   }
-}
+} */

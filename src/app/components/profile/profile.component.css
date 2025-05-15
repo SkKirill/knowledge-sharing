@@ -1,18 +1,22 @@
 .profile-container {
   max-width: 1100px;
-  padding: 60px; /* отступы по бокам */
+  padding: 60px;
   box-sizing: border-box;
   margin: 0 auto;
+  overflow: hidden !important; /* временно добавьте !important для теста */
+position: relative;
 }
 
 .profile-card {
   margin: 40px auto;
   padding: 20px;
+
+  
 }
 
 .profile-header {
   display: flex;
-  gap: 30px;
+  gap: 50px;
   flex-wrap: wrap;
 }
 
@@ -24,9 +28,9 @@
 }
 
 .profile-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  border-radius: 15px;
   object-fit: cover;
   margin-bottom: 10px;
 }
@@ -49,7 +53,8 @@
 
 .card {
   flex: 1 1 400px;
-  padding: 20px;
+  padding: 10px;
+  padding-top: 0px;
 }
 
 .knowledge-item {
@@ -59,6 +64,7 @@
   margin-bottom: 15px;
 }
 
-.full-width {
-  width: 100%;
+
+.section-title{
+  padding: 15px;
 }
