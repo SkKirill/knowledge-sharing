@@ -1,57 +1,82 @@
-<div class="container">
-  <!-- Profile Block -->
-  <div class="card profile-card">
-    <div class="form-group">
-      <input type="file" accept="image/*">
-      <img src="assets/avatar-placeholder.png" class="profile-img" alt="Avatar">
-    </div>
-    <div class="form-group">
-      <label>Фамилия</label>
-      <input type="text" placeholder="Введите фамилию">
-    </div>
-    <div class="form-group">
-      <label>Имя</label>
-      <input type="text" placeholder="Введите имя">
-    </div>
-    <div class="form-group">
-      <label>Отчество</label>
-      <input type="text" placeholder="Введите отчество">
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" placeholder="Введите почту">
-    </div>
-    <div class="form-group">
-      <label>Телефон</label>
-      <input type="tel" placeholder="Введите номер телефона">
-    </div>
-    <button class="button">Сохранить</button>
-  </div>
-
-  <!-- Knowledge Blocks -->
-  <div class="knowledge-container">
-    <div class="card">
-      <div class="section-title">Хочу получить знания</div>
-      <ul class="item-list">
-        <li>
-          <input type="text" placeholder="Добавить знание">
-          <button>Удалить</button>
-        </li>
-        <!-- Добавлять динамически -->
-      </ul>
-      <button class="button">Добавить</button>
+<div class="profile-container">
+<mat-card class="profile-card">
+  <div class="profile-header">
+    <div class="avatar-section">
+      <img [src]="profileImageUrl || 'assets/avatar-placeholder.png'" class="profile-img" alt="Avatar">
+      <input type="file" accept="image/*" hidden #fileInput (change)="onFileSelected($event)">
+      <button mat-stroked-button color="primary" (click)="fileInput.click()">Загрузить фото</button>
     </div>
 
-    <div class="card">
-      <div class="section-title">Хочу поделиться знаниями</div>
-      <ul class="item-list">
-        <li>
-          <input type="text" placeholder="Добавить знание">
-          <button>Удалить</button>
-        </li>
-        <!-- Добавлять динамически -->
-      </ul>
-      <button class="button">Добавить</button>
+    <div class="info-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Фамилия</mat-label>
+        <input matInput [(ngModel)]="lastName">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Имя</mat-label>
+        <input matInput [(ngModel)]="firstName">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Отчество</mat-label>
+        <input matInput [(ngModel)]="middleName">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" type="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Телефон</mat-label>
+        <input matInput [(ngModel)]="phone" type="tel">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>О себе</mat-label>
+        <textarea matInput rows="3" [(ngModel)]="about"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="saveProfile()">Сохранить</button>
     </div>
   </div>
+</mat-card>
+
+<div class="knowledge-section">
+  <ng-container *ngFor="let category of knowledgeCategories">
+    <mat-card class="card">
+      <div class="section-title">{{ category.label }}</div>
+
+      <div *ngFor="let item of category.items; let i = index" class="knowledge-item">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Название</mat-label>
+          <input matInput [(ngModel)]="item.name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Место получения</mat-label>
+          <input matInput [(ngModel)]="item.place">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Уровень</mat-label>
+          <mat-select [(ngModel)]="item.level">
+            <mat-option *ngFor="let level of levels" [value]="level">{{ level }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-icon-button color="warn" (click)="removeKnowledge(category.key, i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <button mat-stroked-button color="accent" (click)="addKnowledge(category.key)">
+        <mat-icon>add</mat-icon>
+        Добавить
+      </button>
+    </mat-card>
+  </ng-container>
+</div>
 </div>

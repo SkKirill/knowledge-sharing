@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
 import {AboutComponent} from './components/about/about.component';
 import {ProfileComponent} from './components/profile/profile.component';
-import {ExchangeComponent} from './components/exchange/exchange.component';
+import {ExchangeComponent} from './components/exchange/search-panel.component';
 
 export const routes: Routes = [
   {path: 'about', component: AboutComponent},
