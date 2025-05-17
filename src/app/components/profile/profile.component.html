@@ -1,33 +1,82 @@
+<div class="profile-container">
 <mat-card class="profile-card">
-  <mat-card-header>
-    <mat-card-title>Профиль</mat-card-title>
-    <mat-card-subtitle>Информация о пользователе</mat-card-subtitle>
-  </mat-card-header>
-
-  <mat-card-content class="profile-content">
-    <div class="profile-info">
-      <img mat-card-image [src]="user.avatarUrl" alt="Аватар пользователя" class="avatar">
-      <h3>{{ user.name }}</h3>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Роль:</strong> {{ user.role }}</p>
-      <p><strong>О себе:</strong> {{ user.bio || 'Пока ничего не указано' }}</p>
+  <div class="profile-header">
+    <div class="avatar-section">
+      <img [src]="profileImageUrl || 'assets/avatar-placeholder.png'" class="profile-img" alt="Avatar">
+      <input type="file" accept="image/*" hidden #fileInput (change)="onFileSelected($event)">
+      <button mat-stroked-button color="primary" (click)="fileInput.click()">Загрузить фото</button>
     </div>
 
-    <div class="skills-section">
-      <h4>Навыки</h4>
-      <mat-chip-listbox>
-        <mat-chip *ngFor="let skill of user.skills" color="primary" selected>
-          {{ skill }}
-        </mat-chip>
-        <mat-chip *ngIf="user.skills.length === 0" color="warn" disabled>
-          Нет добавленных навыков
-        </mat-chip>
-      </mat-chip-listbox>
-    </div>
-  </mat-card-content>
+    <div class="info-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Фамилия</mat-label>
+        <input matInput [(ngModel)]="lastName">
+      </mat-form-field>
 
-  <mat-card-actions align="end">
-    <button mat-button color="accent" (click)="editProfile()">Редактировать</button>
-    <button mat-raised-button color="warn" (click)="logout()">Выйти</button>
-  </mat-card-actions>
+      <mat-form-field appearance="fill">
+        <mat-label>Имя</mat-label>
+        <input matInput [(ngModel)]="firstName">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Отчество</mat-label>
+        <input matInput [(ngModel)]="middleName">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" type="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Телефон</mat-label>
+        <input matInput [(ngModel)]="phone" type="tel">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>О себе</mat-label>
+        <textarea matInput rows="3" [(ngModel)]="about"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="saveProfile()">Сохранить</button>
+    </div>
+  </div>
 </mat-card>
+
+<div class="knowledge-section">
+  <ng-container *ngFor="let category of knowledgeCategories">
+    <mat-card class="card">
+      <div class="section-title">{{ category.label }}</div>
+
+      <div *ngFor="let item of category.items; let i = index" class="knowledge-item">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Название</mat-label>
+          <input matInput [(ngModel)]="item.name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Место получения</mat-label>
+          <input matInput [(ngModel)]="item.place">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Уровень</mat-label>
+          <mat-select [(ngModel)]="item.level">
+            <mat-option *ngFor="let level of levels" [value]="level">{{ level }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-icon-button color="warn" (click)="removeKnowledge(category.key, i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <button mat-stroked-button color="accent" (click)="addKnowledge(category.key)">
+        <mat-icon>add</mat-icon>
+        Добавить
+      </button>
+    </mat-card>
+  </ng-container>
+</div>
+</div>

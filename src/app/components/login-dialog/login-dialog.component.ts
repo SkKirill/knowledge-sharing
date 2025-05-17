@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import {MatFormField, MatInputModule, MatLabel} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
+import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { MatButtonToggle } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-login-dialog',
@@ -15,9 +16,9 @@ import {NgIf} from '@angular/common';
     MatLabel,
     MatFormField,
     FormsModule,
-    NgIf
-  ],
-  styleUrls: ['./login-dialog.component.css']
+    NgIf,
+    MatButtonToggle,
+  ]
 })
 export class LoginDialogComponent {
   email = '';

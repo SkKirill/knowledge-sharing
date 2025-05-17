@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggle } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, MatButtonToggle],
 })
 export class AboutComponent {
   images: string[] = [

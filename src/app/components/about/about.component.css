@@ -2,7 +2,23 @@
   border: 0;
   height: 1px;
   background: linear-gradient(to right, transparent, #00aaff88, transparent);
-  margin: 40px 0;
+  margin: 25px 0;
+}
+
+.mat-button-toggle {
+  background-color: #00aaff;
+  color: white;
+}
+
+/* Активная кнопка */
+.mat-button-toggle.mat-button-toggle-checked {
+  background-color: #00aaff;
+  color: #fff;
+}
+
+/* Наведение */
+.mat-button-toggle:hover {
+  background-color: #0090d0;
 }
 
 .icon-divider {
@@ -19,7 +35,6 @@
   opacity: 0.6;
 }
 
-
 .about-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -33,7 +48,7 @@
   justify-content: center;
   align-items: center;
   gap: 40px;
-  padding: 60px 20px;
+  padding: 30px 20px;
   background-color: #fff;
   border-radius: 40px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
@@ -115,7 +130,7 @@
 }
 
 .hero-text button:hover {
-  background-color: #e65e15;
+  background-color: #00aaff;
 }
 
 .hero-text button mat-icon {
@@ -137,15 +152,6 @@
 
 
 /*---------------------------------------------------------------------*/
-
-
-.how-it-works {
-  background-color: #fff;
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .how-it-works h2 {
   text-align: center;
   font-size: 1.8em;
@@ -240,7 +246,7 @@
 
 .section-title {
   font-size: 28px;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
   font-weight: bold;
   color: #222;
 }
@@ -252,9 +258,9 @@
 /* Слайдер */
 .slider-container {
   position: relative;
-  width: 700px;
-  height: 400px;
-  margin: 0 auto 60px auto;
+  width: 600px;
+  height: 350px;
+  margin: 0 auto 20px auto;
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -403,12 +409,6 @@
 
 /*---------------------------------------------------------------------*/
 
-
-.benefits-timeline {
-  background-color: #f5f9fc;
-  padding: 60px 20px;
-}
-
 .benefits-container {
   text-align: center;
   font-family: Arial, sans-serif;
@@ -510,12 +510,6 @@
 
 /*---------------------------------------------------------------------*/
 
-.timeline-container {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  padding: 40px 20px;
-}
 
 .timeline-title {
   font-size: 28px;
@@ -567,7 +561,8 @@
   flex-direction: column;
   gap: 60px;
   padding: 0px 20px;
-  background: #fff5f7; /* нежно-розовый фон */
+  background: #fff;
+  border-radius: 12px;
 }
 
 .highlight-item {
