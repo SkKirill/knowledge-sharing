@@ -10,7 +10,8 @@ import {NgIf, NgOptimizedImage} from '@angular/common';
   selector: 'app-header',
   templateUrl: './header.component.html',
   imports: [MatToolbarModule, MatButtonModule, RouterLink, NgOptimizedImage, NgIf],
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  standalone: true
 })
 export class HeaderComponent {
   isLoggedIn = false;

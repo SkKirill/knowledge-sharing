@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-footer',
   standalone: true,
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css'],
+  styleUrl: './footer.component.css',
   imports: [
     MatToolbarModule,
     MatIconModule,

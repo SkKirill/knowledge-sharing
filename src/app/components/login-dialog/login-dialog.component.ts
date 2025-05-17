@@ -7,6 +7,7 @@ import { MatButtonToggle } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-login-dialog',
+  standalone: true,
   templateUrl: './login-dialog.component.html',
   imports: [
     MatFormField,
@@ -18,7 +19,8 @@ import { MatButtonToggle } from '@angular/material/button-toggle';
     FormsModule,
     NgIf,
     MatButtonToggle,
-  ]
+  ],
+  styleUrl: './login-dialog.component.css'
 })
 export class LoginDialogComponent {
   email = '';

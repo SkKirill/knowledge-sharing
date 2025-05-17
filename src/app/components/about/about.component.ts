@@ -5,7 +5,7 @@ import { MatButtonToggle } from '@angular/material/button-toggle';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css'],
+  styleUrl: './about.component.css',
   standalone: true,
   imports: [MatIconModule, MatButtonToggle],
 })
