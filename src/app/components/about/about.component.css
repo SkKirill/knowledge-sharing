@@ -2,7 +2,7 @@
   border: 0;
   height: 1px;
   background: linear-gradient(to right, transparent, #00aaff88, transparent);
-  margin: 40px 0;
+  margin: 25px 0;
 }
 
 .mat-button-toggle {
@@ -35,7 +35,6 @@
   opacity: 0.6;
 }
 
-
 .about-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -49,7 +48,7 @@
   justify-content: center;
   align-items: center;
   gap: 40px;
-  padding: 60px 20px;
+  padding: 30px 20px;
   background-color: #fff;
   border-radius: 40px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
@@ -247,7 +246,7 @@
 
 .section-title {
   font-size: 28px;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
   font-weight: bold;
   color: #222;
 }
@@ -259,9 +258,9 @@
 /* Слайдер */
 .slider-container {
   position: relative;
-  width: 700px;
-  height: 400px;
-  margin: 0 auto 60px auto;
+  width: 600px;
+  height: 350px;
+  margin: 0 auto 20px auto;
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
