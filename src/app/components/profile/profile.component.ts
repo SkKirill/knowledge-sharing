@@ -8,11 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-// ✅ Интерфейс знаний
 interface KnowledgeItem {
   name: string;
   place: string;
   level: string;
+  isEditing?: boolean;
 }
 
 @Component({
@@ -28,11 +28,11 @@ interface KnowledgeItem {
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ]
 })
 export class ProfileComponent {
-  profileImageUrl: string | null = null;
+  photos: string[] = [];
   lastName = '';
   firstName = '';
   middleName = '';
@@ -52,17 +52,26 @@ export class ProfileComponent {
   ];
 
   onFileSelected(event: Event) {
-    const file = (event.target as HTMLInputElement)?.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => (this.profileImageUrl = reader.result as string);
-      reader.readAsDataURL(file);
+    const files = (event.target as HTMLInputElement)?.files;
+    if (files) {
+      for (const file of Array.from(files)) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.photos.push(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
     }
   }
 
   addKnowledge(categoryKey: string) {
     const category = this.knowledgeCategories.find(c => c.key === categoryKey);
-    category?.items.push({ name: '', place: '', level: '' });
+    category?.items.push({
+      name: '',
+      place: '',
+      level: '',
+      isEditing: true
+    });
   }
 
   removeKnowledge(categoryKey: string, index: number) {
@@ -79,6 +88,7 @@ export class ProfileComponent {
       phone: this.phone,
       about: this.about,
       knowledge: this.knowledgeCategories,
+      photos: this.photos
     });
   }
 }

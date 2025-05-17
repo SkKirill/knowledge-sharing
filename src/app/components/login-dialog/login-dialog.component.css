@@ -1,52 +1,110 @@
 .auth-dialog-wrapper {
-  background-color: #fff;
-  border-radius: 6px;
-  padding: 25px 30px;
-  width: 450px;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 40px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  gap: 24px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .auth-title {
-  color: #24292e;
-  font-size: 30px;
-  margin-bottom: 30px;
-  margin-top: -5px;
   font-weight: 600;
+  font-size: 1.8rem;
+  margin: 0;
+  text-align: center;
+  color: #3f51b5;
+}
+
+.auth-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-box mat-form-field {
+  width: 100%;
+}
+
+.auth-input {
+  width: 100%;
+  min-width: 300px; /* Добавляем минимальную ширину */
+}
+
+/* Чекбокс */
+.remember-checkbox {
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.87);
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+
+/* Блок кнопок */
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+button.btn-continue,
+button.btn-register,
+.auth-box > button {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  text-transform: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button.btn-register {
+  color: #3f51b5;
+}
+
+button.btn-register:hover {
+  background-color: rgba(63, 81, 181, 0.08);
+}
+
+/* Текст под полями */
+.info-text {
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.6);
   text-align: center;
 }
 
-.dialog-stage {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* Кнопка подтверждения кода */
+.auth-box > button {
+  margin-top: 8px;
+  align-self: stretch;
 }
 
-.auth-label {
-  color: #24292e;
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0 0 -4px 4px;
-}
+/* Адаптивность */
+@media (max-width: 480px) {
+  .auth-dialog-wrapper {
+    padding: 24px 16px;
+    border-radius: 8px;
+  }
 
-mat-form-field {
-  width: 100%;
-  color: #ffffff;
-}
-
-.auth-button {
-  background-color: #00aaff;
-  color: white;
-  font-size: 15px;
-  font-weight: 300;
-  height: 40px;
-  width: 100%;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
-}
-
-.auth-button:hover {
-  background-color: #00aaffb1;
+  .auth-title {
+    font-size: 1.5rem;
+  }
 }

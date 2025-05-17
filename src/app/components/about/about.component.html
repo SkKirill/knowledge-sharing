@@ -1,251 +1,127 @@
 <div class="about-container">
-  <section class="hero">
-    <div class="hero-side-img left">
-      <img src="About1.jpg">
-    </div>
 
-    <div class="hero-center">
-      <p>Начни этот день с новых знаний и общения!</p>
-      <h1><span class="highlight">Обмен</span> Знаниями & Умениями</h1>
-      <mat-button-toggle color="primary" routerLink="/register">
-        Присоединиться <mat-icon>arrow_forward</mat-icon>
-      </mat-button-toggle>
-    </div>
-
-    <div class="hero-side-img right">
-      <img src="About2.jpg" >
+  <!-- Герой-секция -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <img src="About1.jpg" alt="Изображение слева" class="hero-image">
+      <div class="hero-text">
+        <p>Начни этот день с новых знаний и общения!</p>
+        <h1><span class="highlight">Обмен</span> Знаниями & Умениями</h1>
+          <button mat-raised-button color="accent" (click)="openLoginDialog(true)">
+            Присоединиться <mat-icon>arrow_forward</mat-icon>
+          </button>
+      </div>
+      <img src="About2.jpg" alt="Изображение справа" class="hero-image">
     </div>
   </section>
-
 
   <hr class="divider" />
   <div class="icon-divider">
     <mat-icon>star</mat-icon>
   </div>
 
-  <section>
-    <div class="center">
-      <h2 class="section-title">О НАС <span class="highlight">И НАШЕЙ МИССИИ</span></h2>
-    </div>
+<!-- Слайдер с фотографиями -->
+<section class="photo-slider">
+  <div class="slider-container">
+    <button class="nav-button left" (click)="prevImage()">&#10094;</button>
 
-    <div class="slider-container">
-      <div class="slider">
-        <img
-          *ngFor="let image of images; let i = index"
-          [src]="image "
-          class="slide"
-          [class.active]="i === currentSlide"
-          [alt]="'Слайд ' + (i + 1)"
-        />
-      </div>
+    <img [src]="sliderImages[currentSlide]" alt="Слайд" class="slider-image" />
 
-      <button class="slider-btn left" (click)="prevSlide()">&#10094;</button>
-      <button class="slider-btn right" (click)="nextSlide()">&#10095;</button>
-    </div>
+    <button class="nav-button right" (click)="nextImage()">&#10095;</button>
+  </div>
+</section>
 
 
-      <div class="info-section">
-        <div class="info-block">
-          <h3>О НАС</h3>
-          <p>Платформа «Обмен знаниями и умениями» — это современное веб-приложение,
-            созданное для того, чтобы объединять людей, готовых учиться и делиться своим опытом.
-            Каждый пользователь может не только получать знания, но и становиться наставником для других,
-            раскрывая свой потенциал в новом формате.</p>
-        </div>
-        <div class="info-block">
-          <h3>НАША МИССИЯ</h3>
-        <p>Мы верим, что знание — это сила, которая растёт, когда ей делятся. Наша миссия — создать открытую, дружелюбную и многоязычную среду, где каждый сможет:<br>
-          — делиться своими знаниями и умениями,<br>
-          — находить партнёров и единомышленников по интересам,<br>
-          — учиться в своём ритме, без границ и барьеров,<br>
-          — вдохновляться историями других и вдохновлять их в ответ.<br><br>
+  <!-- О нас и миссия -->
+  <section class="info-section">
+    <mat-card class="info-card">
+      <mat-card-title>О НАС</mat-card-title>
+      <mat-card-content>
+        <p>Обмен Знаниями & Умениями» — это веб-приложение, созданное для того, чтобы объединять людей, готовых учиться и делиться своими знаниями и умениями.
+        <br>  <br>Знание — это сила, которая растёт, когда ей делятся. 
         </p>
-      </div>
-      </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="info-card">
+      <mat-card-title>МИССИЯ</mat-card-title>
+      <mat-card-content>
+        <p> Миссия — создать открытую, дружелюбную и многоязычную среду, где каждый сможет делиться своими знаниями и умениями, 
+          находить партнёров и единомышленников по интересам, учиться в своём ритме и вдохновляться историями других.</p>
+      </mat-card-content>
+    </mat-card>
   </section>
 
-
-  <hr class="divider" />
+   <hr class="divider">
   <div class="icon-divider">
     <mat-icon>star</mat-icon>
   </div>
 
+
+    <!-- Чему вы можете научиться -->
+  <section class="learning">
+    <h2>Чему вы можете научиться?</h2>
+    <mat-grid-list cols="4" rowHeight="200px" gutterSize="16px">
+      <mat-grid-tile *ngFor="let item of learningItems">
+        <img [src]="item.image" alt="{{item.title}}">
+        <mat-grid-tile-footer>
+          <h3>{{item.title}}</h3>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </section>
+
+<!-- Как это работает -->
+<hr class="divider" />
+<div class="icon-divider">
+  <mat-icon>star</mat-icon>
+</div>
 
 <section class="how-it-works">
-<div class = "info-block">
   <h2>Хочешь начать, но не знаешь как?</h2>
+  <p class="subtitle">не бойтесь знакомиться и открывать для себя новое</p>
 
-  <div class="work-step">
-    <div class="work-image"></div>
-    <div class="work-text">
-      <div class="circle-number">01</div>
-      <h3>Простая регистрация</h3>
-      <p>Нажми на Войти/Зарегестрироваться</p>
-    </div>
-  </div>
-
-  <div class="work-step">
-    <div class="work-image"></div>
-    <div class="work-text">
-      <div class="circle-number">02</div>
-      <h3>Создай профиль</h3>
-      <p>Расскажи о своих знаниях и умениях и о том, чему хочешь научиться</p>
-    </div>
-  </div>
-
-  <div class="work-step reverse">
-    <div class="work-text">
-      <div class="circle-number">03</div>
-      <h3>Найди пользователя</h3>
-      <p>В поисковой строке введи инетерсующие тебя знания и следом подтянуться обладатели таких знаний</p>
-    </div>
-    <div class="work-image"></div>
-  </div>
-
-  <div class="work-step">
-    <div class="work-image"></div>
-    <div class="work-text">
-      <div class="circle-number">04</div>
-      <h3>Начни обмен знаниями</h3>
-      <p>нажмиОбщайся через чат, не переживай встретить иноязычного пользователя,ведь в нашем чате есть встроенный переводчик. При географической близости вы можете договориться и встрече 🤗</p>
-    </div>
-  </div>
-</div>
-</section>
-
-
-<hr class="divider" />
-<div class="icon-divider">
-  <mat-icon>star</mat-icon>
-</div>
-
-
-
-<section class="benefits-timeline">
-  <div class="benefits-container">
-    <h2 class="benefits-title">Наши преимущества</h2>
-    <div class="benefits-path">
-
-      <div class="benefit-step left">
-        <mat-icon class="benefit-icon">school</mat-icon>
-        <p>Изучайте новые навыки у опытных пользователей.</p>
-      </div>
-
-      <div class="benefit-star">★</div>
-
-      <div class="benefit-step right">
-        <mat-icon class="benefit-icon">chat</mat-icon>
-        <p>Общайтесь через чат со встроенным переводчиком.</p>
-      </div>
-
-      <div class="benefit-star">★</div>
-
-      <div class="benefit-step left">
-        <mat-icon class="benefit-icon">group</mat-icon>
-        <p>Находите единомышленников и стройте полезные связи.</p>
-      </div>
-
-      <div class="benefit-star">★</div>
-
-      <div class="benefit-step right">
-        <mat-icon class="benefit-icon">public</mat-icon>
-        <p>Доступность интерфейса делает платформу удобной для всех.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<hr class="divider" />
-<div class="icon-divider">
-  <mat-icon>star</mat-icon>
-</div>
-
-
-<section>
-  <div class="timeline-container">
-    <h2 class="timeline-title">Чему вы можете научиться</h2>
-    <div class="timeline-grid">
-      <div class="timeline-block">
-        <p>Играть в шахматы</p>
-        <img src="About_sh.jpg" alt="Общение" class="timeline-icon">
-      </div>
-      <div class="timeline-block">
-        <p>Заниматься спортом</p>
-        <img src="About_z.jpg" alt="Встречи" class="timeline-icon">
-      </div>
-      <div class="timeline-block">
-        <p>Программировать</p>
-        <img src="About_p.jpg" alt="Наставничество" class="timeline-icon">
-      </div>
-   <!--   <div class="timeline-block">
-        <p>Можно общаться онлайн</p>
-        <img src="About_s.jpg" alt="Коммуникация" class="timeline-icon">
-      </div> -->
-      <div class="timeline-block">
-        <p>Играть в футбол </p>
-        <img src="About_f.jpg" alt="Друзья" class="timeline-icon">
+  <div class="steps-container">
+    <div
+      class="work-step"
+      *ngFor="let step of steps; let i = index"
+      [ngClass]="{ reverse: i % 2 !== 0 }"
+    >
+      <div class="work-image"
+        [style.background-image]="'url(' + step.image + ')'"
+        [ngStyle]="step.imageStyle"  
+      ></div>
+      <div class="work-text">
+        <div class="circle-number">{{ '0' + step.number }}</div>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
       </div>
     </div>
   </div>
 </section>
 
-
-
-  <hr class="divider" />
+   <hr class="divider" />
   <div class="icon-divider">
     <mat-icon>star</mat-icon>
   </div>
 
-  <section class="highlight-section">
-    <div class="highlight-item">
-      <div class="highlight-text">
-        <h3>Наши Ценности</h3>
-        <p>
-          Мы верим в силу обмена знаниями и взаимопомощи. Наше сообщество построено на принципах уважения,
-          открытости и стремления к постоянному развитию.
-        </p>
-        <p>
-          Вместе мы создаем среду, где каждый может чувствовать себя комфортно, делиться своими знаниями и
-          получать поддержку от других.
-        </p>
-      </div>
-      <div class="highlight-image">
-        <img src="images/values-illustration.png" alt="Ценности сообщества">
-      </div>
-    </div>
 
-    <div class="highlight-item reverse">
-      <div class="highlight-image">
-        <img src="images/opportunities-illustration.png" alt="Возможности для развития">
-      </div>
-      <div class="highlight-text">
-        <h3>Возможности для Развития</h3>
-        <p>
-          "Обмен Знаниями" предлагает широкий спектр возможностей для развития ваших навыков и знаний. Вы можете
-          участвовать в обсуждениях, делиться опытом, создавать учебные материалы и помогать другим.
-        </p>
-        <p>
-          Мы также планируем регулярные онлайн-мероприятия: вебинары, мастер-классы и воркшопы с экспертами.
-        </p>
-      </div>
-    </div>
-
-    <div class="highlight-item">
-      <div class="highlight-text">
-        <h3>Поддержка и Взаимопомощь</h3>
-        <p>
-          Если у вас возникли вопросы, вы всегда можете обратиться за помощью к другим участникам сообщества.
-        </p>
-        <p>
-          Мы предлагаем систему наставничества, где можно найти ментора и двигаться к своим целям с поддержкой.
-        </p>
-      </div>
-      <div class="highlight-image">
-        <img src="images/support-illustration.png" alt="Поддержка сообщества">
-      </div>
+  <!-- Преимущества -->
+  <section class="benefits">
+    <h2>Наши преимущества</h2>
+    <div class="benefits-list">
+      <mat-card class="benefit-card" *ngFor="let benefit of benefits">
+        <mat-icon class="benefit-icon">{{benefit.icon}}</mat-icon>
+        <p>{{benefit.text}}</p>
+      </mat-card>
     </div>
   </section>
+
+  <hr class="divider" />
+  <div class="icon-divider">
+  </div>
+
+
+
 
 </div>

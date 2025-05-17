@@ -1,29 +1,67 @@
-<div class="auth-dialog-wrapper">
+<div class="auth-dialog-wrapper mat-elevation-z8">
   <h1 class="auth-title">
-    {{ isRegistering ? 'Регистрация:' : 'Вход' }}
+    {{ stage === 3 ? 'Регистрация' : 'Вход' }}
   </h1>
 
+  <!-- Этап 1: Логин + пароль + запомнить меня -->
   <div *ngIf="stage === 1" class="auth-box">
-    <mat-label class="auth-label" for="email">Введите вашу почту:</mat-label>
-    <mat-form-field appearance="fill" class="auth-input">
-      <input matInput id="email" type="email" [(ngModel)]="email" placeholder="Введите почту"/>
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Логин (Email)</mat-label>
+      <input matInput type="email" [(ngModel)]="email" placeholder="Введите почту" required />
     </mat-form-field>
-    <mat-button-toggle class="auth-button" (click)="submitEmail()">Продолжить</mat-button-toggle>
+
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="password" [(ngModel)]="password" placeholder="Введите пароль" required />
+    </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="rememberMe" class="remember-checkbox">
+      Запомнить меня
+    </mat-checkbox>
+
+    <div class="auth-buttons">
+      <button mat-raised-button color="primary" (click)="submitLogin()" class="btn-continue">
+        Продолжить
+      </button>
+      <button mat-button color="accent" (click)="goToRegister()" class="btn-register">
+        Зарегистрироваться
+      </button>
+    </div>
   </div>
 
+  <!-- Этап 2: Ввод кода из почты -->
   <div *ngIf="stage === 2" class="auth-box">
-    <mat-label class="auth-label" for="password">
-      {{ isRegistering ? 'Введите пароль и подтвердите его:' : 'Введите пароль:' }}
-    </mat-label>
-    <mat-form-field appearance="fill" class="auth-input">
-      <input matInput type="password" id="password" [(ngModel)]="password" placeholder="Введите пароль">
+    <p class="info-text">Код отправлен на почту: <strong>{{ email }}</strong></p>
+
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Введите код</mat-label>
+      <input matInput type="text" [(ngModel)]="verificationCode" placeholder="Введите код" required />
     </mat-form-field>
 
-    <mat-form-field *ngIf="isRegistering" appearance="fill" class="auth-input">
-      <input matInput type="password" placeholder="Подтвердите пароль">
-    </mat-form-field>
-
-    <mat-button-toggle class="auth-button" (click)="submitPassword()">Подтвердить</mat-button-toggle>
+    <button mat-raised-button color="primary" (click)="submitVerificationCode()">
+      Подтвердить
+    </button>
   </div>
 
+  <!-- Этап 3: Регистрация -->
+  <div *ngIf="stage === 3" class="auth-box">
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Почта</mat-label>
+      <input matInput type="email" [(ngModel)]="email" placeholder="Введите почту" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="password" [(ngModel)]="password" placeholder="Введите пароль" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Подтвердите пароль</mat-label>
+      <input matInput type="password" [(ngModel)]="confirmPassword" placeholder="Повторите пароль" required />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="submitRegistration()">
+      Зарегистрироваться
+    </button>
+  </div>
 </div>

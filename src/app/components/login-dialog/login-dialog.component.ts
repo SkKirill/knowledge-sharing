@@ -1,32 +1,37 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
+
+import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
-import { MatButtonToggle } from '@angular/material/button-toggle';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login-dialog',
   standalone: true,
   templateUrl: './login-dialog.component.html',
+  styleUrls: ['./login-dialog.component.css'],
   imports: [
-    MatFormField,
-    MatLabel,
-    MatFormField,
-    MatInputModule,
-    MatLabel,
-    MatFormField,
-    FormsModule,
+    CommonModule,
     NgIf,
-    MatButtonToggle,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
   ],
-  styleUrl: './login-dialog.component.css'
 })
 export class LoginDialogComponent {
   email = '';
   password = '';
-  isRegistering = false;
-  stage = 1;
+  confirmPassword = '';
+  verificationCode = '';
+  rememberMe = true;
+  isRegistering = true;
+  stage = 1; // 1 - логин, 2 - ввод кода, 3 - регистрация
 
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>) {}
 
@@ -35,21 +40,83 @@ export class LoginDialogComponent {
   }
 
   submitEmail(): void {
-    // TODO: Отправить email на сервер и получить ответ: входит или регистрируется
-    // В зависимости от ответа, установить this.isRegistering
-    // Здесь пока просто пример
-    if (this.email === 'test@example.com') {
-      this.isRegistering = true; // Пользователь входит
+    if (!this.email) {
+      alert('Введите email');
+      return;
+    }
+
+    // Пример: если email совпадает — считаем, что пользователь зарегистрирован
+    if (this.email.toLowerCase() === '535389@bk.ru') {
+      this.isRegistering = false; // пользователь входит
     } else {
-      this.isRegistering = true; // Пользователь регистрируется
+      this.isRegistering = true; // пользователь регистрируется
     }
     this.stage = 2;
+    this.sendVerificationCode(this.email);
   }
 
   submitPassword(): void {
-    // TODO: Отправить пароль на сервер для аутентификации/регистрации
-    // В случае успеха закрыть диалог
-    // Здесь пока просто пример
-    this.dialogRef.close('success'); // Закрываем диалог и передаем "success"
+    if (!this.password) {
+      alert('Введите пароль');
+      return;
+    }
+
+    // Здесь можно добавить отправку на сервер для проверки пароля
+    this.dialogRef.close('success');
+  }
+
+  submitLogin(): void {
+    if (!this.email || !this.password) {
+      alert('Введите email и пароль');
+      return;
+    }
+
+    // Логика входа
+    this.submitEmail();
+  }
+
+  goToRegister(): void {
+    this.stage = 3;
+    this.clearForm();
+  }
+
+  submitVerificationCode(): void {
+    if (!this.verificationCode) {
+      alert('Введите код подтверждения');
+      return;
+    }
+
+    if (this.verificationCode === '1234') {
+      this.dialogRef.close('success');
+    } else {
+      alert('Неверный код');
+    }
+  }
+
+  submitRegistration(): void {
+    if (!this.email || !this.password || !this.confirmPassword) {
+      alert('Заполните все поля');
+      return;
+    }
+    if (this.password !== this.confirmPassword) {
+      alert('Пароли не совпадают');
+      return;
+    }
+
+    // Здесь отправка данных регистрации на сервер
+    this.dialogRef.close('registered');
+  }
+
+  private sendVerificationCode(email: string): void {
+    console.log(`Отправляем код подтверждения на почту ${email}`);
+    // TODO: Вызов API для отправки кода
+  }
+
+  private clearForm(): void {
+    this.email = '';
+    this.password = '';
+    this.confirmPassword = '';
+    this.verificationCode = '';
+    this.rememberMe = false;
   }
 }
