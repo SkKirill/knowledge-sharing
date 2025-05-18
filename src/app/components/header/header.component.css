@@ -2,11 +2,14 @@
   flex: 1 1 auto;
 }
 
+
 mat-toolbar-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-left: 145px;
+  padding-right: 145px;
 }
 
 /* Дополнительные стили для кнопок, если нужно */

@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 
 body {
-  background-color: #EFEFEF;
+  background-color: #fff;
   margin: 0; /* Убираем стандартные отступы body */
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow: auto;

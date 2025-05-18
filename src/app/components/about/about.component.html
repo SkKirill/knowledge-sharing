@@ -60,7 +60,7 @@
 
     <!-- Чему вы можете научиться -->
   <section class="learning">
-    <h2>Чему вы можете научиться?</h2>
+    <h2><span class="highlight3">Чему вы</span> можете научиться?</h2>
     <mat-grid-list cols="4" rowHeight="200px" gutterSize="16px">
       <mat-grid-tile *ngFor="let item of learningItems">
         <img [src]="item.image" alt="{{item.title}}">
@@ -78,7 +78,7 @@
 </div>
 
 <section class="how-it-works">
-  <h2>Хочешь начать, но не знаешь как?</h2>
+  <h2><span class="highlight1"> Хочешь начать,</span> но не знаешь как?</h2>
   <p class="subtitle">не бойтесь знакомиться и открывать для себя новое</p>
 
   <div class="steps-container">
@@ -108,7 +108,7 @@
 
   <!-- Преимущества -->
   <section class="benefits">
-    <h2>Наши преимущества</h2>
+    <h2><span class="highlight2"> Наши</span> преимущества</h2>
     <div class="benefits-list">
       <mat-card class="benefit-card" *ngFor="let benefit of benefits">
         <mat-icon class="benefit-icon">{{benefit.icon}}</mat-icon>
@@ -117,11 +117,52 @@
     </div>
   </section>
 
+
   <hr class="divider" />
   <div class="icon-divider">
+    <mat-icon>star</mat-icon>
   </div>
 
+  <section class="highlight-section">
+  <!-- Первый элемент -->
+  <mat-card class="highlight-item">
+    <div class="card-content">
+      <div class="highlight-text">
+        <mat-card-title>Наши Ценности</mat-card-title>
+        <mat-card-content>
+          <p>
+            Cообщество построено на принципах уважения, открытости и стремления к постоянному развитию.
+          </p>
+          <p>
+            Вместе мы создаем среду, где каждый может чувствовать себя комфортно, делиться своими знаниями и
+            получать поддержку от других.
+          </p>
+        </mat-card-content>
+      </div>
+      <div class="highlight-image">
+        <img mat-card-image src="assets/images/values-illustration.png" alt="Ценности сообщества">
+      </div>
+    </div>
+  </mat-card>
 
-
-
-</div>
+  <!-- Второй элемент (реверс) -->
+  <mat-card class="highlight-item reverse">
+    <div class="card-content reverse">
+      <div class="highlight-image">
+        <img mat-card-image src="assets/images/opportunities-illustration.png" alt="Возможности для развития">
+      </div>
+      <div class="highlight-text">
+        <mat-card-title>Возможности для Развития придумать че то другое</mat-card-title>
+        <mat-card-content>
+          <p>
+            "Обмен Знаниями & Умениями" предлагает большой спектр возможностей для развития. 
+             Вы можете делиться опытом, создавать учебные материалы и помогать другим.
+          </p>
+          <p>
+            Мы также планируем регулярные онлайн-мероприятия: вебинары, мастер-классы и воркшопы с экспертами.
+          </p>
+        </mat-card-content>
+      </div>
+    </div>
+  </mat-card>
+</section>

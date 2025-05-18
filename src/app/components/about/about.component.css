@@ -16,7 +16,7 @@
     text-align: center;
     font-size: 28px;
     margin-bottom: 24px;
-    color: #3664c7;
+    color: #55acf3;
   }
 }
 /* === Слайдер с фотографиями === */
@@ -52,7 +52,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color:  #3664c7;
+    background-color:  #009AF3;
     color: white;
     border: none;
     border-radius: 50%;
@@ -64,7 +64,7 @@
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #2eaadbab;
+      background-color: #009af39f;
     }
 
     &.left {
@@ -76,7 +76,7 @@
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .nav-button {
       width: 36px;
       height: 36px;
@@ -126,7 +126,7 @@
         text-align: center;
 
         .highlight {
-          color: #3664c7;
+          color: #009AF3;
           
         }
       }
@@ -156,7 +156,7 @@
 
   .info-card {
     flex: 1 1 48%;
-    background: linear-gradient(145deg, #f4faff, #ffffff);
+    background: linear-gradient(145deg, #fff, #e9f4f9);
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(63, 81, 181, 0.1);
     padding: 16px;
@@ -166,9 +166,10 @@
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 12px;
-      color: #3664c7;
+      color: #009AF3;
       border-bottom: 2px solid #c5cae9;
       padding-bottom: 4px;
+      
     }
 
     mat-card-content {
@@ -195,16 +196,20 @@
     gap: 10px;
   }
 
+.highlight2 {
+ color: #000000;
+}
   .benefit-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     text-align: center;
+    background: linear-gradient(145deg, #fff, #e9f4f9);
 
     .benefit-icon {
       font-size: 25px;
-      color: #3f51b5;
+      color: #009AF3;
       margin-bottom: 1px;
     }
 
@@ -232,24 +237,29 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+       border: 6px solid #e9f4f9;
       }
 
       mat-grid-tile-footer {
         background: rgba(0, 0, 0, 0.6);
         color: white;
+
         h3 {
-          margin: 0;
-          padding: 8px;
+          margin: 10px; 
+          padding: 10px;
           font-size: 16px;
         }
       }
     }
   }
 }
+.highlight3{
+  color: #000000;
+}
 
 
 .divider {
-  border: 0;
+  border: 10px;
   height: 1px;
   background: linear-gradient(to right, transparent, #00aaff88, transparent);
   margin: 5px 0;
@@ -264,44 +274,44 @@
 }
 
 .icon-divider mat-icon {
-  font-size: 28px;
-  color: #3664c7;
+  font-size: 25px;
+  color: #009AF3;
   opacity: 0.6;
 }
 
 
-
-/* ===== How It Works ===== */
 /* ===== How It Works ===== */
 .how-it-works {
-  background-color: #edf1f0;
-  padding: 60px 20px;
+  background-color: #fff;
   font-family: 'Segoe UI', sans-serif;
   max-width: 1100px;
   margin: 0 auto;
+  padding-top: 10px;
 
+.highlight1 {
+  color: #009AF3;;
+}
   h2 {
     text-align: center;
-    font-size: 2em;
-    margin-bottom: 10px;
-    color: #3664c7;
+    font-size: 25px;
+    margin-bottom: 5px;
+    color: #000000;
   }
 
   .subtitle {
     margin-top: -10px;
     text-align: center;
-    color: #616161;
-    margin-bottom: 30px;
-    font-size: 1.1em;
+    color: #514e4eae;
+    margin-bottom: 20px;
     position: relative;
     padding-top: 10px;
 
     &::after {
       content: '';
       display: block;
-      width: 600px;
+      width: 405px;
       height: 1px;
-      background-color: #616161;
+      background-color: #514e4eae;
       margin: 5px auto 0;
     }
   }
@@ -309,14 +319,14 @@
   .steps-container {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 10px;
   }
 
   .work-step {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    gap: 10px;
     animation: fadeInUp 0.6s ease-in-out;
     transition: all 0.3s ease;
 
@@ -326,15 +336,18 @@
   }
 
   .work-image {
-    flex: 1;
-    min-height: 250px; /* Изменено на min-height */
-    border-radius: 12px;
+    border-radius: 16px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 20px #bce7ff;;
     transition: transform 0.3s;
     margin: 0 auto;
+    display: block;
+
+    /* Базовые размеры (будут переопределены индивидуальными стилями) */
+    min-height: 200px;
+    width: 300px;
 
     &:hover {
       transform: scale(1.03);
@@ -346,29 +359,29 @@
     padding: 20px;
 
     .circle-number {
-      width: 55px;
-      height: 55px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: #ffffff;
-      border: 3px solid #3664c7;
-      color: #3664c7;
+      border: 1.5px solid #009AF3;
+      color: #009AF3;
       font-weight: bold;
       margin: 0 auto 15px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2em;
+      font-size: 22px;
     }
 
     h3 {
-      font-size: 1.5em;
+      font-size: 22px;
       margin-bottom: 15px;
       color: #222;
       text-align: center;
     }
 
     p {
-      font-size: 1.1em;
+      font-size: 17px;
       color: #444;
       text-align: center;
       line-height: 1.6;
@@ -377,6 +390,10 @@
 
   @media (max-width: 768px) {
     padding: 40px 15px;
+
+    .subtitle::after {
+      width: 80%;
+    }
 
     .steps-container {
       gap: 40px;
@@ -391,7 +408,7 @@
 
     .work-image {
       width: 100%;
-      height: 200px; /* Убрано !important */
+      height: 180px;
       min-height: auto;
     }
 
@@ -410,5 +427,69 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+------------------
+.highlight-section {
+  padding: 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.highlight-item {
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+      flex: 1 1 48%;
+    background: linear-gradient(145deg, #fff, #e9f4f9);
+  
+  .highlight-text {
+    flex: 1;
+    padding: 1rem;
+    
+    mat-card-title {
+      color: #009AF3; 
+      margin-bottom: 1rem;
+    }
+    
+    mat-card-content {
+      color: #616161;
+      line-height: 1.6;
+    }
+  }
+  
+  .highlight-image {
+    flex: 1;
+    
+    img {
+      width: 250px;
+      height: 250px;
+      border-radius: 4px;
+    }
+  }
+}
+
+ Стили для реверсного расположения
+.reverse {
+  flex-direction: row-reverse;
+}
+
+
+@media (max-width: 768px) {
+  .card-content, .reverse {
+    flex-direction: column;
+    
+    .highlight-text, .highlight-image {
+      width: 100%;
+      padding: 0.5rem;
+    }
   }
 }

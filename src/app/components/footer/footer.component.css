@@ -18,16 +18,15 @@
 
 .contact-creator a {
   text-decoration: none;
-  color: #00aaff;
+  color: #009AF3;
   font-weight: 500;
   font-size: 16px;
   transition: color 0.3s, background-color 0.3s;
 }
 
 .contact-creator a:hover {
-  color: #005577;
-  background-color: rgba(0, 170, 255, 0.1); /* мягкий фон при наведении */
-  border-radius: 4px;
+  color: #000000;
+  border-radius: 1px;
 }
 
 /* Ссылки внизу */
@@ -43,7 +42,7 @@
 }
 
 .footer-links a:hover {
-  color: #00aaff;
+  color: #000000;
 }
 
 .footer-copy {
@@ -76,7 +75,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.781);
   display: none;
   justify-content: center;
   align-items: center;
@@ -116,12 +115,12 @@
 
 .radio-group label {
   font-size: 16px;
-  color: #1f2937;
+  color: #0d61d6ef;
 }
 
 .modal-apply {
   margin-top: 24px;
-  background: #2563eb;
+  background: #d94919;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -137,6 +136,6 @@
   border: none;
   background: none;
   font-size: 20px;
-  color: #6b7280;
+  color: #000000;
   cursor: pointer;
 }

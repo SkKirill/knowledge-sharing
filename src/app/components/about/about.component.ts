@@ -47,7 +47,7 @@ steps = [
     description: 'Нажмете "Войти | Зарегистрироваться". Регистрация займет пару минут.',
     image: 'reg.jpg',
     imageStyle: {
-      'min-height': '200px',
+      'min-height': '260px',
       'width': '200px'
     }
   },
@@ -58,8 +58,8 @@ steps = [
     description: 'Заполните информацию о себе и укажите интересующие знания.',
     image: 'prof.jpg',
     imageStyle: {
-      'height': '200px',
-      'width': '200px'
+      'height': '250px',
+      'width': '350px'
     }
   },
   {
@@ -78,7 +78,7 @@ steps = [
     description: 'Обменивайтесь знаниями, учитесь и вдохновляйтесь.',
     image: 'assets/step3.jpg',
     imageStyle: {
-      'height': '300px',
+      'height': '200px',
       'width': '550px'
     }
   }
@@ -93,6 +93,10 @@ steps = [
   ];
 
   learningItems = [
+    { title: 'Играть в шахматы', image: 'About_sh.jpg' },
+    { title: 'Заниматься спортом', image: 'About_z.jpg' },
+    { title: 'Программировать', image: 'About_p.jpg' },
+    { title: 'Играть в футбол', image: 'About_f.jpg' },
     { title: 'Играть в шахматы', image: 'About_sh.jpg' },
     { title: 'Заниматься спортом', image: 'About_z.jpg' },
     { title: 'Программировать', image: 'About_p.jpg' },
@@ -135,3 +139,4 @@ nextImage() {
     this.currentSlide === this.sliderImages.length - 1 ? 0 : this.currentSlide + 1;
 }
 }
+
