@@ -93,14 +93,14 @@ steps = [
   ];
 
   learningItems = [
-    { title: 'Играть в шахматы', image: 'About_sh.jpg' },
-    { title: 'Заниматься спортом', image: 'About_z.jpg' },
-    { title: 'Программировать', image: 'About_p.jpg' },
-    { title: 'Играть в футбол', image: 'About_f.jpg' },
-    { title: 'Играть в шахматы', image: 'About_sh.jpg' },
-    { title: 'Заниматься спортом', image: 'About_z.jpg' },
-    { title: 'Программировать', image: 'About_p.jpg' },
-    { title: 'Играть в футбол', image: 'About_f.jpg' }
+    { title: 'Играть в шахматы', image: 'About_shah.jpg' },
+    { title: 'Заниматься спортом', image: 'About_zal.jpg' },
+    { title: 'Выращивать цветы', image: 'About_flor.jpg' },
+    { title: 'Программировать', image: 'About_prog.jpg' },
+    { title: 'Сортировать мусор', image: 'About_trash.jpg' },
+    { title: 'Играть на гитаре', image: 'About_gitar.jpg' },
+    { title: 'Фотографировать', image: 'About_foto.jpg' },
+    { title: 'Играть в футбол', image: 'About_fut.jpg' }
   ];
 
   values = [
