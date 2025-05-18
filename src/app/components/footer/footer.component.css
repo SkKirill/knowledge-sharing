@@ -83,7 +83,7 @@
 }
 
 .modal {
-  background: white;
+  background: linear-gradient(145deg, #fff, #e9f4f9);
   padding: 24px;
   border-radius: 12px;
   width: 90%;
@@ -103,24 +103,10 @@
   color: #4b5563;
 }
 
-.modal-section {
-  margin-top: 20px;
-}
-
-.radio-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.radio-group label {
-  font-size: 16px;
-  color: #0d61d6ef;
-}
 
 .modal-apply {
   margin-top: 24px;
-  background: #d94919;
+  background: #7ed6ff;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -138,4 +124,47 @@
   font-size: 20px;
   color: #000000;
   cursor: pointer;
+}
+
+
+
+/* ... предыдущие стили ... */
+
+.modal-section {
+  margin: 20px 0;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.modal-apply {
+  width: 100%;
+  padding: 12px;
+  background-color: #009AF3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.modal-apply:hover {
+  background-color: #009af3b2;
 }

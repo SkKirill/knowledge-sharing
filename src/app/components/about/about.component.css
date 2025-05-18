@@ -141,7 +141,7 @@
       height: auto;
       border-radius: 12px;
       object-fit: cover;
-      box-shadow: 0 0px 40px #79bfdf;;
+      box-shadow: 0 0px 40px #79bfdf;
     }
   }
 }
@@ -150,9 +150,10 @@
 .info-section {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 30px;
   justify-content: space-between;
-  padding: 0 12px;
+  padding: 0px;
+
 
   .info-card {
     flex: 1 1 48%;
@@ -285,8 +286,7 @@
   background-color: #fff;
   font-family: 'Segoe UI', sans-serif;
   max-width: 1100px;
-  margin: 0 auto;
-  padding-top: 10px;
+  padding: 0px;
 
 .highlight1 {
   color: #009AF3;;

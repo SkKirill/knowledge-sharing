@@ -5,46 +5,61 @@
 
   <section class="footer-links">
     <a routerLink="/about">О проекте</a>
-    <a routerLink="/faq">бубубу</a>
+    <a routerLink="/faq">FAQ</a>
     <a routerLink="/contact">Контакты</a>
     <a routerLink="/privacy-policy">Политика конфиденциальности</a>
+    <a routerLink="/privacy-policy">Политика обработки данных</a>
   </section>
 
   <section class="footer-copy">
     <p>&copy; 2025 Обмен Знаниями & Умениями. Все права защищены.</p>
   </section>
 
-  <footer class="footer">
-    <div class="footer-location">
-      <button class="location-btn" onclick="openLocationModal()">
-        <span class="location-icon"><mat-icon>location_on</mat-icon></span>
-        <span class="location-text">г Воронеж</span>
-      </button>
-    </div>
-  </footer>
+<div class="footer-location">
+  <button class="location-btn" (click)="showLocationModal()">
+    <span class="location-icon"><mat-icon>location_on</mat-icon></span>
+    <span class="location-text">{{ locationSettings.displayLocation }}</span>
+  </button>
+</div>
 
   <!-- Модальное окно -->
-  <div class="modal-overlay" id="locationModal">
+  <div class="modal-overlay" #locationModal>
     <div class="modal">
-      <button class="modal-close" onclick="closeLocationModal()">✖</button>
+      <button class="modal-close" (click)="closeLocationModal()">✖</button>
       <h2>Где вы находитесь?</h2>
       <p>Вы увидите услуги, доступные для вашего региона</p>
 
       <div class="modal-section">
         <strong>Текущее местоположение</strong>
-        <p>Воронежская обл / г Воронеж</p>
+        <p>{{ locationSettings.currentLocation }}</p>
       </div>
 
       <div class="modal-section">
-        <strong>Выбор региона</strong>
+        <strong>Метод определения</strong>
         <div class="radio-group">
-          <label><input type="radio" name="region" checked> Автоматически</label>
-          <label><input type="radio" name="region"> Вручную</label>
+          <label>
+            <input type="radio" name="method" [(ngModel)]="locationSettings.method" value="auto" (change)="detectLocation()">
+            Автоматически
+          </label>
+          <label>
+            <input type="radio" name="method" [(ngModel)]="locationSettings.method" value="manual">
+            Вручную
+          </label>
         </div>
       </div>
 
-      <button class="modal-apply">Применить</button>
+      <div class="modal-section" *ngIf="locationSettings.method === 'manual'">
+        <mat-form-field appearance="outline">
+          <mat-label>Выберите регион</mat-label>
+          <mat-select [(ngModel)]="locationSettings.manualLocation">
+            <mat-option *ngFor="let region of regions" [value]="region">
+              {{ region }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button class="modal-apply" (click)="applyLocationSettings()">Применить</button>
     </div>
   </div>
-
 </footer>
