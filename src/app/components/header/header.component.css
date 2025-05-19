@@ -24,6 +24,8 @@ mat-button {
 }
 
 mat-toolbar {
+  position: fixed;
+  font-size: 20px;
   margin-top: 16px;
   background-color: #E8E0D1;
   border: 1px solid #444; /* Более темная граница */
@@ -32,11 +34,11 @@ mat-toolbar {
   z-index: 1000;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(3px);
+
 }
 
 .header-wrapper {
-  position: fixed;
-  width: 99%; 
+  width: 99%;
   left: -1.5px ;
   padding-left: 10px;
   margin-right: 10px;
