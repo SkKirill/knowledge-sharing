@@ -1,12 +1,12 @@
 <div class="auth-dialog-wrapper mat-elevation-z8">
   <h1 class="auth-title">
-    {{ stage === 3 ? 'Регистрация' : 'Вход' }}
+    {{ stage === 3 ? 'Регистрация' : (stage === 4 ? 'Восстановление пароля' : 'Вход') }}
   </h1>
 
   <!-- Этап 1: Логин + пароль + запомнить меня -->
   <div *ngIf="stage === 1" class="auth-box">
     <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
-      <mat-label>Логин (Email)</mat-label>
+      <mat-label>Email</mat-label>
       <input matInput type="email" [(ngModel)]="email" placeholder="Введите почту" required />
     </mat-form-field>
 
@@ -14,6 +14,10 @@
       <mat-label>Пароль</mat-label>
       <input matInput type="password" [(ngModel)]="password" placeholder="Введите пароль" required />
     </mat-form-field>
+
+     <button mat-button color="warn" (click)="goToPasswordRecovery()" class="btn-forgot">
+          Забыли пароль?
+        </button>
 
     <mat-checkbox [(ngModel)]="rememberMe" class="remember-checkbox">
       Запомнить меня
@@ -23,9 +27,11 @@
       <button mat-raised-button color="primary" (click)="submitLogin()" class="btn-continue">
         Продолжить
       </button>
-      <button mat-button color="accent" (click)="goToRegister()" class="btn-register">
-        Зарегистрироваться
-      </button>
+      <div class="auth-links">
+        <button mat-button color="accent" (click)="goToRegister()" class="btn-register">
+          Зарегистрироваться
+        </button>
+      </div>
     </div>
   </div>
 
@@ -63,5 +69,49 @@
     <button mat-raised-button color="primary" (click)="submitRegistration()">
       Зарегистрироваться
     </button>
+    
+  </div>
+
+  <!-- Этап 4: Восстановление пароля -->
+  <div *ngIf="stage === 4" class="auth-box">
+    <p class="info-text">Введите email, на который зарегистрирован аккаунт</p>
+
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="email" placeholder="Введите почту" required />
+    </mat-form-field>
+
+    <div class="auth-buttons">
+      <button mat-raised-button color="primary" (click)="sendPasswordRecovery()">
+        Отправить код
+      </button>
+      <button mat-button (click)="backToLogin()">
+        Назад к входу
+      </button>
+    </div>
+  </div>
+
+  <!-- Этап 5: Ввод нового пароля -->
+  <div *ngIf="stage === 5" class="auth-box">
+    <p class="info-text">Введите новый пароль для {{ email }}</p>
+
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Новый пароль</mat-label>
+      <input matInput type="password" [(ngModel)]="password" placeholder="Введите новый пароль" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="auth-input" floatLabel="auto">
+      <mat-label>Подтвердите пароль</mat-label>
+      <input matInput type="password" [(ngModel)]="confirmPassword" placeholder="Повторите пароль" required />
+    </mat-form-field>
+
+    <div class="auth-buttons">
+      <button mat-raised-button color="primary" (click)="submitNewPassword()">
+        Сохранить пароль
+      </button>
+      <button mat-button (click)="backToLogin()">
+        Назад к входу
+      </button>
+    </div>
   </div>
 </div>

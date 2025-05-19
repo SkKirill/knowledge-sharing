@@ -31,7 +31,7 @@ export class LoginDialogComponent {
   verificationCode = '';
   rememberMe = true;
   isRegistering = true;
-  stage = 1; // 1 - логин, 2 - ввод кода, 3 - регистрация
+  stage = 1; // 1 - логин, 2 - ввод кода, 3 - регистрация, 4 - восстановление пароля, 5 - новый пароль
 
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>) {}
 
@@ -45,11 +45,10 @@ export class LoginDialogComponent {
       return;
     }
 
-    // Пример: если email совпадает — считаем, что пользователь зарегистрирован
     if (this.email.toLowerCase() === '535389@bk.ru') {
-      this.isRegistering = false; // пользователь входит
+      this.isRegistering = false;
     } else {
-      this.isRegistering = true; // пользователь регистрируется
+      this.isRegistering = true;
     }
     this.stage = 2;
     this.sendVerificationCode(this.email);
@@ -60,8 +59,6 @@ export class LoginDialogComponent {
       alert('Введите пароль');
       return;
     }
-
-    // Здесь можно добавить отправку на сервер для проверки пароля
     this.dialogRef.close('success');
   }
 
@@ -70,13 +67,21 @@ export class LoginDialogComponent {
       alert('Введите email и пароль');
       return;
     }
-
-    // Логика входа
     this.submitEmail();
   }
 
   goToRegister(): void {
     this.stage = 3;
+    this.clearForm();
+  }
+
+  goToPasswordRecovery(): void {
+    this.stage = 4;
+    this.clearForm();
+  }
+
+  backToLogin(): void {
+    this.stage = 1;
     this.clearForm();
   }
 
@@ -87,7 +92,11 @@ export class LoginDialogComponent {
     }
 
     if (this.verificationCode === '1234') {
-      this.dialogRef.close('success');
+      if (this.stage === 2) {
+        this.dialogRef.close('success');
+      } else if (this.stage === 4) {
+        this.stage = 5; // Переход к вводу нового пароля
+      }
     } else {
       alert('Неверный код');
     }
@@ -102,18 +111,43 @@ export class LoginDialogComponent {
       alert('Пароли не совпадают');
       return;
     }
-
-    // Здесь отправка данных регистрации на сервер
     this.dialogRef.close('registered');
+  }
+
+  sendPasswordRecovery(): void {
+    if (!this.email) {
+      alert('Введите email');
+      return;
+    }
+    
+    // Отправляем код восстановления
+    this.sendVerificationCode(this.email);
+    this.stage = 2; // Переход к вводу кода
+  }
+
+  submitNewPassword(): void {
+    if (!this.password || !this.confirmPassword) {
+      alert('Заполните все поля');
+      return;
+    }
+    if (this.password !== this.confirmPassword) {
+      alert('Пароли не совпадают');
+      return;
+    }
+    
+    // Здесь должна быть логика сохранения нового пароля
+    alert('Пароль успешно изменен');
+    this.dialogRef.close('password_changed');
   }
 
   private sendVerificationCode(email: string): void {
     console.log(`Отправляем код подтверждения на почту ${email}`);
     // TODO: Вызов API для отправки кода
+    // В демо-режиме просто показываем alert
+    alert(`Код подтверждения (демо): 1234`);
   }
 
   private clearForm(): void {
-    this.email = '';
     this.password = '';
     this.confirmPassword = '';
     this.verificationCode = '';

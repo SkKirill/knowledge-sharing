@@ -2,14 +2,11 @@
   flex: 1 1 auto;
 }
 
-
 mat-toolbar-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-left: 145px;
-  padding-right: 145px;
 }
 
 /* Дополнительные стили для кнопок, если нужно */
@@ -34,11 +31,13 @@ mat-toolbar {
   z-index: 1000;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(3px);
-
+  padding-left: 130px;
+  padding-right: 155px;
+  
 }
 
 .header-wrapper {
-  width: 99%;
+  width: 99%; 
   left: -1.5px ;
   padding-left: 10px;
   margin-right: 10px;
