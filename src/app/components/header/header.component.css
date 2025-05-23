@@ -31,16 +31,13 @@ mat-toolbar {
   z-index: 1000;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(3px);
-  padding-left: 130px;
-  padding-right: 155px;
+  padding-left: 125px;
+  padding-right: 140px;
   
 }
 
 .header-wrapper {
-  width: 99%; 
-  left: -1.5px ;
-  padding-left: 10px;
-  margin-right: 10px;
+
 }
 
 mat-button {

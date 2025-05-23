@@ -11,17 +11,63 @@
       </div>
 
       <div class="info-section">
-        <mat-form-field appearance="fill"><mat-label>Фамилия</mat-label><input matInput [(ngModel)]="lastName" /></mat-form-field>
-        <mat-form-field appearance="fill"><mat-label>Имя</mat-label><input matInput [(ngModel)]="firstName" /></mat-form-field>
-        <mat-form-field appearance="fill"><mat-label>Отчество</mat-label><input matInput [(ngModel)]="middleName" /></mat-form-field>
-        <mat-form-field appearance="fill"><mat-label>Email</mat-label><input matInput type="email" [(ngModel)]="email" /></mat-form-field>
-        <mat-form-field appearance="fill"><mat-label>Телефон</mat-label><input matInput type="tel" [(ngModel)]="phone" /></mat-form-field>
-        <mat-form-field appearance="fill"><mat-label>О себе</mat-label><textarea matInput rows="3" [(ngModel)]="about"></textarea></mat-form-field>
+        <!-- Первая строка - ФИО -->
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="name-field">
+            <mat-label>Фамилия</mat-label>
+            <input matInput [(ngModel)]="lastName" />
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill" class="name-field">
+            <mat-label>Имя</mat-label>
+            <input matInput [(ngModel)]="firstName" />
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill" class="name-field">
+            <mat-label>Отчество</mat-label>
+            <input matInput [(ngModel)]="middleName" />
+          </mat-form-field>
+        </div>
+
+        <!-- Вторая строка - Пол и дата рождения -->
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="gender-field">
+            <mat-label>Пол</mat-label>
+            <mat-select [(ngModel)]="gender">
+              <mat-option value="male">Мужской</mat-option>
+              <mat-option value="female">Женский</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="birthdate-field">
+            <mat-label>Дата рождения</mat-label>
+            <input matInput [matDatepicker]="birthdatePicker" [(ngModel)]="birthDate">
+            <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #birthdatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Телефон</mat-label>
+<input matInput type="tel" 
+      [(ngModel)]="phoneDisplay"
+      (input)="onPhoneInput($event)"
+      (keydown.backspace)="onPhoneBackspace($event)"  
+      placeholder="+7(___) ___-__-__"
+      #phoneInput>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>О себе</mat-label>
+          <textarea matInput rows="3" [(ngModel)]="about"></textarea>
+        </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="saveProfile()">Сохранить</button>
       </div>
     </div>
   </mat-card>
+
+
 
   <div class="knowledge-section">
     <ng-container *ngFor="let category of knowledgeCategories">

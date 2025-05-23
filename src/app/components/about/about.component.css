@@ -282,155 +282,138 @@
 
 
 /* ===== How It Works ===== */
-.how-it-works {
-  background-color: #fff;
-  font-family: 'Segoe UI', sans-serif;
-  max-width: 1100px;
-  padding: 0px;
 
-.highlight1 {
-  color: #009AF3;;
-}
-  h2 {
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 5px;
-    color: #000000;
-  }
-
-  .subtitle {
-    margin-top: -10px;
-    text-align: center;
-    color: #514e4eae;
-    margin-bottom: 20px;
+.horizontal-steps {
+  padding: 0;  
+  text-align: center;
+  
+  .steps-line-container {
     position: relative;
-    padding-top: 10px;
-
-    &::after {
-      content: '';
-      display: block;
-      width: 405px;
-      height: 1px;
-      background-color: #514e4eae;
-      margin: 5px auto 0;
-    }
+    margin: 60px auto;
+    max-width: 1200px;
+    color: #009AF3;
+    font-size: 22px;
   }
 
-  .steps-container {
+  .steps-line {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #009AF3;
+    z-index: 1;
+  }
+
+  .steps-horizontal {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-item {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    width: calc(20% - 20px);
   }
 
-  .work-step {
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 3px solid #009AF3;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    animation: fadeInUp 0.6s ease-in-out;
-    transition: all 0.3s ease;
-
-    &.reverse {
-      flex-direction: row-reverse;
-    }
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 3;
+    color: #009AF3;  
   }
 
-  .work-image {
-    border-radius: 16px;
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0 1px 20px #bce7ff;;
-    transition: transform 0.3s;
-    margin: 0 auto;
-    display: block;
-
-    /* Базовые размеры (будут переопределены индивидуальными стилями) */
-    min-height: 200px;
-    width: 300px;
-
-    &:hover {
-      transform: scale(1.03);
-    }
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid white; 
   }
 
-  .work-text {
-    flex: 1;
-    padding: 20px;
-
-    .circle-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #ffffff;
-      border: 1.5px solid #009AF3;
-      color: #009AF3;
-      font-weight: bold;
-      margin: 0 auto 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
-    }
-
+  .step-text {
+    text-align: center;
+    
     h3 {
-      font-size: 25px;
-      margin-bottom: 15px;
-      color: #222;
-      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #333;
     }
 
     p {
-      font-size: 16px;
-      color: #444;
-      text-align: center;
-      line-height: 1.6;
+      color: #666;
+      line-height: 1.4;
+      font-size: 0.9rem;
     }
   }
 
-  @media (max-width: 768px) {
-    padding: 40px 15px;
-
-    .subtitle::after {
-      width: 80%;
-    }
-
-    .steps-container {
-      gap: 40px;
-    }
-
-    .work-step,
-    .work-step.reverse {
+  /* Адаптация для мобильных */
+  @media (max-width: 768px) {  
+    .steps-horizontal {
       flex-direction: column;
-      text-align: center;
-      gap: 20px;
+      align-items: center;
     }
 
-    .work-image {
+    .step-item {
       width: 100%;
-      height: 180px;
-      min-height: auto;
+      margin-bottom: 40px;
+      flex-direction: row;
+      text-align: left;
     }
 
-    .work-text {
-      padding: 0;
+    .steps-line {
+      display: none;
+    }
+
+    .step-number {
+      margin-right: 20px;
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex-direction: row;
+      align-items: flex-start;
       width: 100%;
+    }
+
+    .step-image {
+      margin-right: 15px;
+      margin-bottom: 0;
+      flex-shrink: 0;
+      width: 80px;  
+      height: 80px;
+    }
+
+    .step-text {
+      text-align: left;
+      flex: 1;
     }
   }
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
+/* ===== ценности ===== */
 .highlight-section {
   padding: 0px;
   max-width: 1100px;

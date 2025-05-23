@@ -45,43 +45,23 @@ steps = [
     number: 1,
     title: 'Зарегистрируйтесь',
     description: 'Нажмете "Войти | Зарегистрироваться". Регистрация займет пару минут.',
-    image: 'reg.jpg',
-    imageStyle: {
-      'min-height': '260px',
-      'width': '200px'
-    }
   },
   // ... остальные шаги
   {
     number: 2,
     title: 'Создайте профиль',
     description: 'Заполните информацию о себе и укажите интересующие знания.',
-    image: 'prof.jpg',
-    imageStyle: {
-      'height': '250px',
-      'width': '350px'
-    }
   },
   {
     number: 3,
     title: 'Найдите собеседника',
     description: 'Ищите людей по интересам и уровню знаний.',
-    image: 'assets/step2.jpg',
-    imageStyle: {
-      'height': '200px',
-      'width': '200px'
-    }
   },
   {
     number: 4,
     title: 'Начните общение',
     description: 'Обменивайтесь знаниями, учитесь и вдохновляйтесь.',
-    image: 'assets/step3.jpg',
-    imageStyle: {
-      'height': '200px',
-      'width': '550px'
-    }
-  }
+  },
 ];
 
 

@@ -46,6 +46,7 @@
 .auth-input {
   width: 100%;
   min-width: 300px; /* Добавляем минимальную ширину */
+  margin-bottom: -10px;
 }
 
 /* Чекбокс */
@@ -93,7 +94,6 @@ button.btn-register:hover {
 
 /* Кнопка подтверждения кода */
 .auth-box > button {
-  margin-top: 8px;
   align-self: stretch;
 }
 
@@ -124,7 +124,10 @@ button.btn-register:hover {
   margin-top: 8px;
 }
 
-
+.btn-forgot{
+ /*margin: -10px 0px -10px -85px;*/
+margin: 0 auto;
+}
 
 
 

@@ -103,18 +103,6 @@
   color: #4b5563;
 }
 
-
-.modal-apply {
-  margin-top: 24px;
-  background: #7ed6ff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
 .modal-close {
   position: absolute;
   top: 12px;
@@ -132,6 +120,7 @@
 
 .modal-section {
   margin: 20px 0;
+  color: #000;
 }
 
 .radio-group {

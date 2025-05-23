@@ -77,24 +77,22 @@
   <mat-icon>star</mat-icon>
 </div>
 
-<section class="how-it-works">
-  <h2><span class="highlight1"> Хочешь начать,</span> но не знаешь как?</h2>
+<section class="horizontal-steps">
+  <h2><span class="highlight1">Хочешь начать,</span> но не знаешь как?</h2>
   <p class="subtitle">не бойтесь знакомиться и открывать для себя новое</p>
 
-  <div class="steps-container">
-    <div
-      class="work-step"
-      *ngFor="let step of steps; let i = index"
-      [ngClass]="{ reverse: i % 2 !== 0 }"
-    >
-      <div class="work-image"
-        [style.background-image]="'url(' + step.image + ')'"
-        [ngStyle]="step.imageStyle"
-      ></div>
-      <div class="work-text">
-        <div class="circle-number">{{ '0' + step.number }}</div>
-        <h3>{{ step.title }}</h3>
-        <p>{{ step.description }}</p>
+  <div class="steps-line-container">
+    <div class="steps-line"></div>
+    
+    <div class="steps-horizontal">
+      <div *ngFor="let step of steps" class="step-item">
+        <div class="step-number">{{ '0' + step.number }}</div>
+        <div class="step-content">
+          <div class="step-text">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -128,7 +126,7 @@
   <mat-card class="highlight-item">
     <div class="card-content">
       <div class="highlight-text">
-        <mat-card-title>Наши Ценности</mat-card-title>
+        <mat-card-title>Наши ценности</mat-card-title>
         <mat-card-content>
           <p>
             Cообщество построено на принципах уважения, открытости и стремления к постоянному развитию.
@@ -165,4 +163,43 @@
       </div>
     </div>
   </mat-card>
+
+  <mat-card class="highlight-item">
+    <div class="card-content">
+      <div class="highlight-text">
+        <mat-card-title>Наши ценности</mat-card-title>
+        <mat-card-content>
+          <p>
+            Ограниченные возможности
+          </p>
+          <p>
+            
+          </p>
+        </mat-card-content>
+      </div>
+      <div class="highlight-image">
+        <img mat-card-image src="About_inv.jpg" alt="Ценности сообщества">
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- Второй элемент (реверс) -->
+  <mat-card class="highlight-item reverse">
+    <div class="card-content reverse">
+      <div class="highlight-image">
+        <img mat-card-image src="About_fam.jpg" alt="Возможности для развития">
+      </div>
+      <div class="highlight-text">
+        <mat-card-title>Развивайся и знакомься</mat-card-title>
+        <mat-card-content>
+         <p>
+        Общий язык с ребенком 
+        </p>
+        <p>
+           </p>
+        </mat-card-content>
+      </div>
+    </div>
+  </mat-card>
+
 </section>

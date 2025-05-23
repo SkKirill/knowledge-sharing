@@ -114,3 +114,46 @@
   gap: 8px;
   align-items: center;
 }
+
+
+
+
+/* Стили для строк формы */
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+/* Стили для полей ФИО */
+.name-field {
+  flex: 1;
+}
+
+/* Стили для поля пола */
+.gender-field {
+  min-width: 120px;
+  flex: 0 0 auto;
+}
+
+/* Стили для поля даты рождения */
+.birthdate-field {
+  flex: 1;
+  max-width: 200px;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .name-field,
+  .gender-field,
+  .birthdate-field {
+    width: 100%;
+    max-width: 100%;
+  }
+}
