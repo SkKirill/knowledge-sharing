@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,11 +9,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 interface KnowledgeItem {
   name: string;
-  place: string;
-  level: string;
+  place?: string;
+  level?: string;
   isEditing?: boolean;
 }
 
@@ -32,58 +33,163 @@ interface KnowledgeItem {
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ]
 })
 export class ProfileComponent {
+  @ViewChild('profileForm') profileForm!: NgForm;
+  
   photos: string[] = [];
+  currentPhotoIndex = 0;
   lastName = '';
   firstName = '';
-  middleName = '';
-  gender: string = '';
+  gender = '';
   birthDate: Date | null = null;
   email = '';
-  phone = '';
   about = '';
-
-  // Для маски телефона
-  phoneModel = '';  // Хранит чистые цифры (79991234567)
-  phoneDisplay = '+7(___) ___-__-__';  // Отображаемое значение
-
+  
+  // Маска телефона
+  phoneModel = '';
+  phoneDisplay = '+7(___) ___-__-__';
+  
+  // Уровни знаний
   levels = ['Начальный', 'Средний', 'Продвинутый', 'Эксперт'];
-
-  knowledgeCategories: {
-    key: string;
-    label: string;
-    items: KnowledgeItem[];
-  }[] = [
-    { key: 'wantToLearn', label: 'Хочу получить знания', items: [] },
-    { key: 'wantToShare', label: 'Хочу поделиться знаниями', items: [] },
+  
+  // Категории знаний
+  knowledgeCategories = [
+    { 
+      key: 'wantToLearn', 
+      label: 'Хочу изучить', 
+      items: [] as KnowledgeItem[],
+      addPlaceholder: 'Добавить цель обучения'
+    },
+    { 
+      key: 'wantToShare', 
+      label: 'Могу поделиться', 
+      items: [] as KnowledgeItem[],
+      addPlaceholder: 'Добавить навык'
+    }
   ];
 
+  constructor(private snackBar: MatSnackBar) {}
+
+  // Проверка валидности всей формы
+  isFormValid(): boolean {
+    // Проверка основной формы
+    if (!this.profileForm || this.profileForm.invalid) {
+      return false;
+    }
+    
+    // Проверка телефона
+    if (!this.isPhoneValid()) {
+      return false;
+    }
+    
+    // Проверка "О себе"
+    if (!this.about || this.about.length < 50) {
+      return false;
+    }
+    
+    // Проверка навыков
+    if (this.knowledgeCategories[0].items.length === 0 || 
+        this.knowledgeCategories[1].items.length === 0) {
+      return false;
+    }
+    
+    // Проверка фото
+    if (this.photos.length === 0) {
+      return false;
+    }
+    
+    return true;
+  }
+
+  // Проверка валидности телефона
+  isPhoneValid(): boolean {
+    return this.phoneModel.length === 11;
+  }
+
+  // Управление фотографиями
   onFileSelected(event: Event) {
     const files = (event.target as HTMLInputElement)?.files;
-    if (files) {
-      for (const file of Array.from(files)) {
+    if (files && files.length > 0) {
+      const filesArray = Array.from(files);
+      
+      if (this.photos.length + filesArray.length > 10) {
+        this.showSnackbar('Можно загрузить не более 10 фото');
+        return;
+      }
+
+      filesArray.forEach(file => {
+        if (!file.type.match('image.*')) {
+          this.showSnackbar('Можно загружать только изображения');
+          return;
+        }
+
         const reader = new FileReader();
         reader.onload = () => {
           this.photos.push(reader.result as string);
+          if (this.photos.length === 1) {
+            this.currentPhotoIndex = 0;
+          }
         };
         reader.readAsDataURL(file);
+      });
+    }
+  }
+
+  removeCurrentPhoto() {
+    if (this.photos.length > 0) {
+      this.photos.splice(this.currentPhotoIndex, 1);
+      if (this.currentPhotoIndex >= this.photos.length && this.photos.length > 0) {
+        this.currentPhotoIndex = this.photos.length - 1;
       }
     }
   }
 
+  prevPhoto() {
+    if (this.currentPhotoIndex > 0) {
+      this.currentPhotoIndex--;
+    }
+  }
+
+  nextPhoto() {
+    if (this.currentPhotoIndex < this.photos.length - 1) {
+      this.currentPhotoIndex++;
+    }
+  }
+
+  // Управление знаниями
   addKnowledge(categoryKey: string) {
     const category = this.knowledgeCategories.find(c => c.key === categoryKey);
     if (category) {
-      category.items.push({
+      const newItem: KnowledgeItem = {
         name: '',
-        place: '',
-        level: this.levels[0],
         isEditing: true
-      });
+      };
+      
+      if (categoryKey === 'wantToShare') {
+        newItem.level = this.levels[0];
+      }
+      
+      category.items.push(newItem);
     }
+  }
+
+  saveSkill(item: KnowledgeItem, categoryKey: string, index: number) {
+    if (!item.name || item.name.trim() === '') {
+      this.showSnackbar('Название не может быть пустым');
+      return;
+    }
+    
+    if (categoryKey === 'wantToShare' && !item.level) {
+      this.showSnackbar('Выберите уровень');
+      return;
+    }
+    
+    item.name = item.name.trim();
+    item.isEditing = false;
   }
 
   removeKnowledge(categoryKey: string, index: number) {
@@ -93,64 +199,45 @@ export class ProfileComponent {
     }
   }
 
-  saveProfile() {
-    console.log({
-      lastName: this.lastName,
-      firstName: this.firstName,
-      middleName: this.middleName,
-      gender: this.gender,
-      birthDate: this.birthDate,
-      email: this.email,
-      phone: this.phoneModel, // Используем phoneModel вместо phone
-      about: this.about,
-      knowledge: this.knowledgeCategories,
-      photos: this.photos
-    });
-  }
-
+  // Маска телефона
   onPhoneInput(event: Event) {
     const input = event.target as HTMLInputElement;
     const position = input.selectionStart || 0;
     const key = (event as InputEvent).data;
     
-    // Если введена цифра
     if (key && /\d/.test(key)) {
-      // Находим следующую позицию для ввода цифры
       const nextPos = this.findNextDigitPosition(position);
       
       if (nextPos !== -1) {
-        // Вставляем цифру в шаблон
         this.phoneDisplay = this.insertDigit(this.phoneDisplay, nextPos, key);
-        
-        // Обновляем чистый номер (без маски)
         this.phoneModel = '7' + this.phoneDisplay.replace(/\D/g, '').substring(1);
         
-        // Устанавливаем курсор на следующую позицию
         setTimeout(() => {
           input.setSelectionRange(nextPos + 1, nextPos + 1);
         });
       }
     }
   }
-onPhoneBackspace(event: Event) {
-  const keyboardEvent = event as KeyboardEvent;
-  const input = keyboardEvent.target as HTMLInputElement;
-  const position = (input.selectionStart || 0) - 1;
-  
-  if (position >= 3) {  // Don't allow deleting +7
-    const prevPos = this.findPrevDigitPosition(position);
+
+  onPhoneBackspace(event: Event) {
+    const keyboardEvent = event as KeyboardEvent;
+    const input = keyboardEvent.target as HTMLInputElement;
+    const position = (input.selectionStart || 0) - 1;
     
-    if (prevPos !== -1) {
-      this.phoneDisplay = this.replaceWithUnderscore(this.phoneDisplay, prevPos);
-      this.phoneModel = '7' + this.phoneDisplay.replace(/\D/g, '').substring(1);
+    if (position >= 3) {
+      const prevPos = this.findPrevDigitPosition(position);
       
-      setTimeout(() => {
-        input.setSelectionRange(prevPos, prevPos);
-      });
+      if (prevPos !== -1) {
+        this.phoneDisplay = this.replaceWithUnderscore(this.phoneDisplay, prevPos);
+        this.phoneModel = '7' + this.phoneDisplay.replace(/\D/g, '').substring(1);
+        
+        setTimeout(() => {
+          input.setSelectionRange(prevPos, prevPos);
+        });
+      }
     }
+    keyboardEvent.preventDefault();
   }
-  keyboardEvent.preventDefault();
-}
 
   // Вспомогательные методы для маски телефона
   private findNextDigitPosition(currentPos: number): number {
@@ -179,5 +266,38 @@ onPhoneBackspace(event: Event) {
 
   private replaceWithUnderscore(str: string, pos: number): string {
     return str.substring(0, pos) + '_' + str.substring(pos + 1);
+  }
+
+  // Сохранение профиля
+  saveProfile() {
+    if (!this.isFormValid()) {
+      this.showSnackbar('Заполните все обязательные поля корректно');
+      return;
+    }
+    
+    const profileData = {
+      personalInfo: {
+        lastName: this.lastName,
+        firstName: this.firstName,
+        gender: this.gender,
+        birthDate: this.birthDate,
+        phone: this.phoneModel,
+        email: this.email,
+        about: this.about,
+        photos: this.photos
+      },
+      skillsToLearn: this.knowledgeCategories[0].items,
+      skillsToShare: this.knowledgeCategories[1].items
+    };
+    
+    console.log('Сохраненные данные:', profileData);
+    this.showSnackbar('Профиль успешно сохранен');
+  }
+
+  private showSnackbar(message: string) {
+    this.snackBar.open(message, 'OK', {
+      duration: 3000,
+      panelClass: ['snackbar-style']
+    });
   }
 }

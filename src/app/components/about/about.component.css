@@ -161,7 +161,7 @@
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(63, 81, 181, 0.1);
     padding: 16px;
-    text-align: center;
+    text-align: justify;
 
     mat-card-title {
       font-size: 22px;

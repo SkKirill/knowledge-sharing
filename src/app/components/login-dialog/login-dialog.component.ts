@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login-dialog',
@@ -22,9 +23,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatIconModule,
   ],
 })
 export class LoginDialogComponent {
+closeDialog() {
+throw new Error('Method not implemented.');
+}
   email = '';
   password = '';
   confirmPassword = '';
@@ -153,4 +158,11 @@ export class LoginDialogComponent {
     this.verificationCode = '';
     this.rememberMe = false;
   }
+  closeDialog2() {
+  if (this.email || this.password) {
+    const confirm = window.confirm('Вы уверены, что хотите закрыть форму? Введенные данные будут потеряны.');
+    if (!confirm) return;
+  }
+  this.dialogRef.close();
+}
 }

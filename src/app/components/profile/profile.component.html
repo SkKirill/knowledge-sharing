@@ -1,130 +1,256 @@
 <div class="profile-container">
   <mat-card class="profile-card">
     <h1 class="profile-title">Профиль</h1>
-    <div class="profile-header">
+    
+    <div class="profile-content">
+      <!-- Левая часть - фото профиля -->
       <div class="avatar-section">
-        <div class="photo-list">
-          <img *ngFor="let photo of photos" [src]="photo" class="profile-img" />
+        <div class="photo-carousel">
+          <button mat-icon-button class="nav-button" (click)="prevPhoto()" [disabled]="currentPhotoIndex === 0">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          
+          <div class="photo-container">
+            <img *ngIf="photos.length > 0" [src]="photos[currentPhotoIndex]" class="profile-img" />
+            <div *ngIf="photos.length === 0" class="empty-photo">
+              <mat-icon>photo_camera</mat-icon>
+              <span>Добавьте фото</span>
+            </div>
+          </div>
+          
+          <button mat-icon-button class="nav-button" (click)="nextPhoto()" [disabled]="currentPhotoIndex === photos.length - 1">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
         </div>
-        <input type="file" accept="image/*" multiple hidden #fileInput (change)="onFileSelected($event)">
-        <button mat-stroked-button color="primary" (click)="fileInput.click()">Загрузить фото</button>
+        
+        <div class="photo-indicators">
+          <span *ngFor="let photo of photos; let i = index" 
+                [class.active]="i === currentPhotoIndex"
+                (click)="currentPhotoIndex = i"></span>
+        </div>
+        
+        <div class="photo-controls">
+          <input type="file" accept="image/*" multiple hidden #fileInput (change)="onFileSelected($event)">
+          <button mat-stroked-button color="primary" (click)="fileInput.click()">
+            <mat-icon>add_photo_alternate</mat-icon>
+            Добавить фото
+          </button>
+          
+          <button mat-stroked-button color="warn" (click)="removeCurrentPhoto()" [disabled]="photos.length === 0">
+            <mat-icon>delete</mat-icon>
+            Удалить
+          </button>
+        </div>
       </div>
 
-      <div class="info-section">
-        <!-- Первая строка - ФИО -->
-        <div class="form-row">
-          <mat-form-field appearance="fill" class="name-field">
-            <mat-label>Фамилия</mat-label>
-            <input matInput [(ngModel)]="lastName" />
-          </mat-form-field>
-          
-          <mat-form-field appearance="fill" class="name-field">
-            <mat-label>Имя</mat-label>
-            <input matInput [(ngModel)]="firstName" />
-          </mat-form-field>
-          
-          <mat-form-field appearance="fill" class="name-field">
-            <mat-label>Отчество</mat-label>
-            <input matInput [(ngModel)]="middleName" />
-          </mat-form-field>
+      <!-- Правая часть - основные данные -->
+      <div class="main-info-section">
+        <!-- Персональная информация -->
+        <div class="personal-info">
+          <div class="form-row">
+            <mat-form-field appearance="fill" class="name-field">
+              <mat-label>Фамилия </mat-label>
+              <input matInput [(ngModel)]="lastName" name="lastName" required>
+              <mat-error>Обязательное поле</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" class="name-field">
+              <mat-label>Имя </mat-label>
+              <input matInput [(ngModel)]="firstName" name="firstName" required>
+              <mat-error>Обязательное поле</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-row">
+            <mat-form-field appearance="fill" class="gender-field">
+              <mat-label>Пол </mat-label>
+              <mat-select [(ngModel)]="gender" name="gender" required>
+                <mat-option value="male">Мужской</mat-option>
+                <mat-option value="female">Женский</mat-option>
+              </mat-select>
+              <mat-error>Обязательное поле</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="birthdate-field">
+              <mat-label>Дата рождения </mat-label>
+              <input matInput [matDatepicker]="birthdatePicker" [(ngModel)]="birthDate" name="birthDate" required>
+              <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #birthdatePicker></mat-datepicker>
+              <mat-error>Обязательное поле</mat-error>
+            </mat-form-field>
+          </div>
         </div>
 
-        <!-- Вторая строка - Пол и дата рождения -->
-        <div class="form-row">
-          <mat-form-field appearance="fill" class="gender-field">
-            <mat-label>Пол</mat-label>
-            <mat-select [(ngModel)]="gender">
-              <mat-option value="male">Мужской</mat-option>
-              <mat-option value="female">Женский</mat-option>
-            </mat-select>
+        <!-- Контактная информация -->
+        <div class="contact-info">
+          <mat-form-field appearance="fill" class="phone-field">
+            <mat-label>Телефон </mat-label>
+            <input matInput type="tel" 
+                  [(ngModel)]="phoneDisplay"
+                  (input)="onPhoneInput($event)"
+                  (keydown.backspace)="onPhoneBackspace($event)"  
+                  placeholder="+7(___) ___-__-__"
+                  name="phone"
+                  required
+                  #phoneInput="ngModel">
+            <mat-error *ngIf="phoneInput.errors?.['required']">Обязательное поле</mat-error>
+            <mat-error *ngIf="phoneInput.value && !isPhoneValid()">Неверный формат</mat-error>
           </mat-form-field>
-
-          <mat-form-field appearance="fill" class="birthdate-field">
-            <mat-label>Дата рождения</mat-label>
-            <input matInput [matDatepicker]="birthdatePicker" [(ngModel)]="birthDate">
-            <mat-datepicker-toggle matSuffix [for]="birthdatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #birthdatePicker></mat-datepicker>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="email" name="email" #emailInput="ngModel">
+            <mat-error *ngIf="emailInput.errors?.['email']">Неверный формат email</mat-error>
           </mat-form-field>
         </div>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Телефон</mat-label>
-<input matInput type="tel" 
-      [(ngModel)]="phoneDisplay"
-      (input)="onPhoneInput($event)"
-      (keydown.backspace)="onPhoneBackspace($event)"  
-      placeholder="+7(___) ___-__-__"
-      #phoneInput>
-        </mat-form-field>
-        
-        <mat-form-field appearance="fill">
-          <mat-label>О себе</mat-label>
-          <textarea matInput rows="3" [(ngModel)]="about"></textarea>
-        </mat-form-field>
-
-        <button mat-raised-button color="primary" (click)="saveProfile()">Сохранить</button>
       </div>
     </div>
-  </mat-card>
 
+    <!-- Поле "О себе" на всю ширину -->
+    <div class="about-section">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>О себе</mat-label>
+        <textarea matInput rows="4" [(ngModel)]="about" name="about" required #aboutInput="ngModel"></textarea>
+        <mat-hint>Расскажите о своих интересах и опыте (минимум 50 символов)</mat-hint>
+        <mat-error *ngIf="aboutInput.errors?.['required']">Обязательное поле</mat-error>
+        <mat-error *ngIf="aboutInput.value?.length < 50">Минимум 50 символов</mat-error>
+      </mat-form-field>
+    </div>
 
-
-  <div class="knowledge-section">
-    <ng-container *ngFor="let category of knowledgeCategories">
-      <mat-card class="card">
-        <div class="section-title">{{ category.label }}</div>
-
-        <div *ngFor="let item of category.items; let i = index" class="knowledge-item">
-          <ng-container *ngIf="!item.isEditing; else editMode">
+    <!-- Блоки навыков -->
+    <div class="skills-section">
+      <!-- Могу поделиться -->
+      <mat-card class="skill-card share-card">
+        <div class="card-header">
+          <h3 class="card-title">Могу поделиться *</h3>
+          <button mat-stroked-button color="accent" (click)="addKnowledge('wantToShare')">
+            <mat-icon>add</mat-icon> Добавить знание
+          </button>
+        </div>
+        
+        <div *ngIf="knowledgeCategories[1].items.length === 0" class="empty-message">
+          Добавьте хотя бы одно знание, которым можете поделиться
+        </div>
+        
+        <div *ngFor="let item of knowledgeCategories[1].items; let i = index" class="knowledge-item">
+          <ng-container *ngIf="!item.isEditing; else editShareMode">
             <div class="knowledge-summary">
-              <div><strong>{{ item.name }}</strong> — {{ item.level }}</div>
-              <div class="place" *ngIf="item.place">{{ item.place }}</div>
+              <div class="skill-info">
+                <div class="skill-name">{{ item.name }}</div>
+                <div class="skill-details">
+                  <span class="skill-level">{{ item.level }}</span>
+                  <span *ngIf="item.place" class="skill-place">• {{ item.place }}</span>
+                </div>
+              </div>
               <div class="actions">
                 <button mat-icon-button color="accent" (click)="item.isEditing = true">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="removeKnowledge(category.key, i)">
+                <button mat-icon-button color="warn" (click)="removeKnowledge('wantToShare', i)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
             </div>
           </ng-container>
 
-          <ng-template #editMode>
+          <ng-template #editShareMode>
             <div class="knowledge-edit">
+              <div class="edit-row">
+                <mat-form-field appearance="fill" class="skill-name-field">
+                  <mat-label>Название навыка </mat-label>
+                  <input matInput [(ngModel)]="item.name" required #shareNameInput="ngModel">
+                  <mat-error>Обязательное поле</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" class="skill-level-field">
+                  <mat-label>Уровень </mat-label>
+                  <mat-select [(ngModel)]="item.level" required #levelSelect="ngModel">
+                    <mat-option *ngFor="let level of levels" [value]="level">{{ level }}</mat-option>
+                  </mat-select>
+                  <mat-error>Обязательное поле</mat-error>
+                </mat-form-field>
+              </div>
+              
               <mat-form-field appearance="fill" class="full-width">
-                <mat-label>Название</mat-label>
-                <input matInput [(ngModel)]="item.name" />
+                <mat-label>Где получили опыт (необязательно)</mat-label>
+                <input matInput [(ngModel)]="item.place" placeholder="Например: университет, курсы, работа">
               </mat-form-field>
-
-              <mat-form-field appearance="fill" class="full-width">
-                <mat-label>Уровень</mat-label>
-                <mat-select [(ngModel)]="item.level">
-                  <mat-option *ngFor="let level of levels" [value]="level">{{ level }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <mat-form-field appearance="fill" class="full-width">
-                <mat-label>Место получения</mat-label>
-                <input matInput [(ngModel)]="item.place" />
-              </mat-form-field>
-
-              <div class="actions">
-                <button mat-icon-button color="primary" (click)="item.isEditing = false">
-                  <mat-icon>check</mat-icon>
+              
+              <div class="edit-actions">
+                <button mat-button color="primary" 
+                        (click)="saveSkill(item, 'wantToShare', i)"
+                        [disabled]="!item.name || !item.level">
+                  <mat-icon>check</mat-icon> Сохранить
                 </button>
-                <button mat-icon-button color="warn" (click)="removeKnowledge(category.key, i)">
-                  <mat-icon>delete</mat-icon>
+                <button mat-button color="warn" (click)="removeKnowledge('wantToShare', i)">
+                  <mat-icon>delete</mat-icon> Удалить
                 </button>
               </div>
             </div>
           </ng-template>
         </div>
-
-        <button mat-stroked-button color="accent" (click)="addKnowledge(category.key)">
-          <mat-icon>add</mat-icon> Добавить
-        </button>
       </mat-card>
-    </ng-container>
-  </div>
+
+      <!-- Хочу изучить -->
+      <mat-card class="skill-card learn-card">
+        <div class="card-header">
+          <h3 class="card-title">Хочу изучить *</h3>
+          <button mat-stroked-button color="accent" (click)="addKnowledge('wantToLearn')">
+            <mat-icon>add</mat-icon> Добавить цель
+          </button>
+        </div>
+        
+        <div *ngIf="knowledgeCategories[0].items.length === 0" class="empty-message">
+          Добавьте хотя бы одно знание, которое хотите изучить
+        </div>
+        
+        <div *ngFor="let item of knowledgeCategories[0].items; let i = index" class="knowledge-item">
+          <ng-container *ngIf="!item.isEditing; else editLearnMode">
+            <div class="knowledge-summary">
+              <div class="skill-name">{{ item.name }}</div>
+              <div class="actions">
+                <button mat-icon-button color="accent" (click)="item.isEditing = true">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="removeKnowledge('wantToLearn', i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-template #editLearnMode>
+            <div class="knowledge-edit">
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Что хотите изучить </mat-label>
+                <input matInput [(ngModel)]="item.name" required #learnNameInput="ngModel">
+                <mat-hint>Например: "Английский язык", "Графический дизайн"</mat-hint>
+                <mat-error>Обязательное поле</mat-error>
+              </mat-form-field>
+              
+              <div class="edit-actions">
+                <button mat-button color="primary" 
+                        (click)="saveSkill(item, 'wantToLearn', i)"
+                        [disabled]="!item.name">
+                  <mat-icon>check</mat-icon> Сохранить
+                </button>
+                <button mat-button color="warn" (click)="removeKnowledge('wantToLearn', i)">
+                  <mat-icon>delete</mat-icon> Удалить
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Кнопка сохранения -->
+    <div class="save-section">
+      <button mat-raised-button color="primary" 
+              (click)="saveProfile()"
+              [disabled]="!isFormValid()">
+        <mat-icon>save</mat-icon> Сохранить профиль
+      </button>
+    </div>
+  </mat-card>
 </div>

@@ -31,7 +31,7 @@ mat-toolbar {
   z-index: 1000;
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(3px);
-  padding-left: 125px;
+  padding-left: 140px;
   padding-right: 140px;
   
 }

@@ -12,7 +12,20 @@
   flex-direction: column;
   gap: 24px;
   animation: fadeIn 0.3s ease-in-out;
-}
+
+  position: relative;  
+  padding-top: 16px;   
+} 
+  .close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: rgba(0, 0, 0, 0.54); 
+    
+    &:hover {
+      color: rgba(0, 0, 0, 0.87); 
+    }
+  }
 
 @keyframes fadeIn {
   from {
