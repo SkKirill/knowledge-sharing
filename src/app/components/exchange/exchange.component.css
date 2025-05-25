@@ -5,11 +5,13 @@
 }
 
 .chat-content {
+  margin-top: 40px;
   display: flex;
   flex: 1;
 }
 
 app-chat-list {
+  margin-top: 40px;
   width: 30%;
   border-right: 1px solid #ccc;
 }
