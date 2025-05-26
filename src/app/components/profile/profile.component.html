@@ -224,7 +224,7 @@
               <mat-form-field appearance="fill" class="full-width">
                 <mat-label>Что хотите изучить </mat-label>
                 <input matInput [(ngModel)]="item.name" required #learnNameInput="ngModel">
-                <mat-hint>Например: "Английский язык", "Графический дизайн"</mat-hint>
+                <mat-hint>Например: «Английский язык», «Графический дизайн»</mat-hint>
                 <mat-error>Обязательное поле</mat-error>
               </mat-form-field>
               
@@ -249,7 +249,7 @@
       <button mat-raised-button color="primary" 
               (click)="saveProfile()"
               [disabled]="!isFormValid()">
-        <mat-icon>save</mat-icon> Сохранить профиль
+        <mat-icon>save</mat-icon> Сохранить изменения
       </button>
     </div>
   </mat-card>

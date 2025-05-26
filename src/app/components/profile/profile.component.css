@@ -204,6 +204,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+
 }
 
 .card-title {
@@ -267,7 +268,7 @@
 
 .knowledge-edit {
   padding: 15px;
-  background: #f8f9fa;
+  background: linear-gradient(145deg, #fff, #d3f1ff);
   border-radius: 8px;
 }
 

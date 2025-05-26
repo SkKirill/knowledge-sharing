@@ -5,3 +5,9 @@ export interface Message {
   content: string;
   timestamp: Date;
 }
+
+export interface Attachment {
+  type: 'image' | 'document' | 'audio' | 'video';
+  url: string;
+  name?: string;
+}

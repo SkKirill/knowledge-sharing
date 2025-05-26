@@ -22,18 +22,29 @@ mat-button {
 
 mat-toolbar {
   position: fixed;
-  font-size: 20px;
-  margin-top: 16px;
-  background-color: #E8E0D1;
-  border: 1px solid #444; /* Более темная граница */
-  color: #FFFFFF;
-  border-radius: 8px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
+
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(3px);
+  color: #FFFFFF;
+  font-size: 30px;
+  border: 1px solid #444;
+  border-radius: 8px;
+
+  /* Базовые отступы */
   padding-left: 140px;
   padding-right: 140px;
-  
+}
+
+/* Адаптация под маленькие экраны */
+@media (max-width: 768px) {
+  mat-toolbar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .header-wrapper {

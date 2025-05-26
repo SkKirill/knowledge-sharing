@@ -1,1 +1,33 @@
-<p>chat-list works!</p>
+<div class="chat-list">
+  <mat-card
+    *ngFor="let user of users"
+    class="chat-item"
+    role="button"
+    tabindex="0"
+    (click)="selectUser(user)"
+    (keydown.enter)="selectUser(user)"
+    [attr.aria-label]="'Выбрать чат с ' + user.name"
+    matTooltip="Кликните, чтобы выбрать чат с {{ user.name }}"
+  >
+    <div class="chat-content">
+      <div class="avatar-wrapper">
+        <img [src]="user.avatar" [alt]="user.name" class="avatar" />
+        <mat-icon class="online-status" [class.online]="user.online">
+          {{ user.online ? 'fiber_manual_record' : 'panorama_fish_eye' }}
+        </mat-icon>
+      </div>
+
+      <div class="info-section">
+        <div class="header">
+          <span class="username">{{ user.name }}</span>
+          <span class="time">{{ user.online ? 'Онлайн' : formatLastSeen(user.lastSeen) }}</span>
+        </div>
+
+        <div class="skills">
+          {{ user.skills.slice(0, 2).join(', ') }}
+          <span *ngIf="user.skills.length > 2">, ...</span>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

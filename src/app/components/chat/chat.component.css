@@ -1,0 +1,140 @@
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  user-select: none;
+}
+
+.chat-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+  border: 1.5px solid #ddd;
+}
+
+.chat-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-username {
+  font-weight: 600;
+  font-size: 16px;
+  color: #222;
+}
+
+.chat-status {
+  font-size: 13px;
+  color: #666;
+}
+
+.messages-container {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #e5ddd5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 15px;
+  position: relative;
+  word-break: break-word;
+  font-size: 14px;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+}
+
+.message.outgoing {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.message.incoming {
+  background-color: #fff;
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.message-text {
+  white-space: pre-wrap;
+}
+
+.message-time {
+  font-size: 11px;
+  color: #999;
+  position: absolute;
+  bottom: 4px;
+  right: 10px;
+}
+
+.message-image {
+  max-width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+.message-file {
+  color: #3b5998;
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.chat-input-area {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border-top: 1px solid #ddd;
+  user-select: none;
+}
+
+.chat-input {
+  flex-grow: 1;
+  padding: 8px 14px;
+  font-size: 15px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+  margin: 0 10px;
+}
+
+.chat-input:focus {
+  border-color: #3b5998;
+  box-shadow: 0 0 5px #3b5998aa;
+}
+
+.btn-send,
+.btn-record,
+.btn-attach {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3b5998;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.btn-send:disabled {
+  color: #bbb;
+  cursor: default;
+}
+
+.btn-send:hover:not(:disabled),
+.btn-record:hover,
+.btn-attach:hover {
+  color: #2a437a;
+}

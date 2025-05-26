@@ -1,19 +1,25 @@
 <div class="header-wrapper">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <button mat-button routerLink="/about">О нас</button>
-      <button mat-button>Описание</button>
-      <button mat-button>Миссия</button>
+      <button mat-button routerLink="/about">Логотип</button>
+      <button mat-button routerLink="/about" fragment="mission" >О нас и миссия</button>
+      <button mat-button routerLink="/about" fragment="opisanie" >Описание</button>
+      <button mat-button routerLink="/about" fragment="Kontact" >Контакты</button>
       <span class="spacer"></span>
 
       <div *ngIf="isLoggedIn">
-        <button mat-button routerLink="/profile">Профиль</button>
-        <button mat-button routerLink="/exchange">Обмен</button>
+        <button mat-button routerLink="/profile"><mat-icon>perm_identity</mat-icon>Профиль</button>
+        <button mat-button routerLink="/exchange"><mat-icon> chat_bubble_outline</mat-icon>Обмен</button>
       </div>
 
-      <button mat-button (click)="openLoginDialog()">
-        {{ isLoggedIn ? 'Выйти из профиля' : 'Войти | Зарегистрироваться' }}
-      </button>
+       <button mat-button (click)="openLoginDialog()">
+    <ng-container *ngIf="isLoggedIn">
+      <mat-icon>exit_to_app</mat-icon> Выйти из профиля
+    </ng-container>
+    <ng-container *ngIf="!isLoggedIn">
+      Войти | Зарегистрироваться
+    </ng-container>
+  </button>
 
     </mat-toolbar-row>
   </mat-toolbar>

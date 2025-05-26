@@ -1,1 +1,51 @@
-<p>chat works!</p>
+<div class="chat-container">
+  <div class="chat-header">
+    <img [src]="activeUser.avatar" [alt]="activeUser.name" />
+    <div class="user-info">
+      <div class="username">{{ activeUser.name }}</div>
+      <div class="status">
+        {{ activeUser.online ? 'онлайн' : 'был(а) недавно' }}
+      </div>
+    </div>
+    <div class="actions">
+      <button mat-icon-button><mat-icon>search</mat-icon></button>
+      <button mat-icon-button><mat-icon>more_vert</mat-icon></button>
+    </div>
+  </div>
+
+  <div class="messages" #messagesContainer>
+    <div *ngFor="let msg of messages" class="message" [class.outgoing]="msg.userId === 0">
+      <div class="bubble">
+        <div class="text" *ngIf="msg.text">{{ msg.text }}</div>
+        <audio [src]="msg.url" controls *ngIf="msg.type === 'audio'"></audio>
+        <img [src]="msg.url" alt="media" *ngIf="msg.type === 'image'" class="message-image" />
+        <video [src]="msg.url" controls *ngIf="msg.type === 'video'" class="message-video"></video>
+        <a [href]="msg.url" target="_blank" *ngIf="msg.type === 'file'">Файл</a>
+        <div class="time">{{ msg.timestamp | date:'HH:mm' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="message-input">
+    <input
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Напишите сообщение..."
+    />
+    <label mat-icon-button for="file-upload">
+      <mat-icon>attach_file</mat-icon>
+      <input
+        id="file-upload"
+        type="file"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+    </label>
+    <button mat-icon-button (click)="toggleRecording()">
+      <mat-icon>{{ isRecording ? 'stop' : 'mic' }}</mat-icon>
+    </button>
+    <button mat-icon-button (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

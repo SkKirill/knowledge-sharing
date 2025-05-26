@@ -1,8 +1,35 @@
-<div class="chat-page">
-  <app-search-bar></app-search-bar>
+<div class="telegram-web flex h-screen">
+  <!-- Sidebar -->
+  <div class="sidebar w-80 bg-white border-r flex flex-col">
+    <div class="search-bar p-4">
+      <mat-icon>search</mat-icon>
+      <input
+        placeholder="Поиск"
+        [(ngModel)]="searchQuery"
+        class="w-full pl-8 pr-4 py-2 rounded outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
 
-  <div class="chat-content">
-    <app-chat-list></app-chat-list>
-    <app-chat></app-chat>
+    <div class="chat-list-scroll flex-1 overflow-y-auto p-2">
+      <app-chat-list
+        [users]="isSearching ? filteredUsers : users"
+        (userSelected)="selectUser($event)"
+      >
+      </app-chat-list>
+    </div>
+  </div>
+
+  <!-- Chat Panel -->
+  <div class="chat-panel flex-1 p-4 bg-gray-100">
+    <ng-container *ngIf="activeChat; else emptyChat">
+      <app-chat [activeUser]="activeChat"></app-chat>
+    </ng-container>
+
+    <ng-template #emptyChat>
+      <div class="empty-chat flex flex-col items-center justify-center h-full text-center text-gray-500">
+        <mat-icon class="text-5xl mb-2">forum</mat-icon>
+        <p>Выберите чат, чтобы начать общение</p>
+      </div>
+    </ng-template>
   </div>
 </div>
