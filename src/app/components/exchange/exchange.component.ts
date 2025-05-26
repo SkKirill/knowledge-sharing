@@ -46,7 +46,7 @@ export class ExchangeComponent {
   users: ChatUser[] = [
     {
       id: 1,
-      name: 'Анна Ковалёва',
+      name: 'Кирилл Скоморохов',
       avatar: 'assets/user1.jpg',
       online: true,
       skills: ['Angular', 'TypeScript'],
@@ -67,7 +67,79 @@ export class ExchangeComponent {
       online: true,
       skills: ['Node.js', 'Express', 'MongoDB'],
       lastSeen: new Date(Date.now() - 600000)
-    }
+    },
+     {
+      id: 4,
+      name: 'Николай Ильин',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['UI/UX Design', 'Photoshop'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+     {
+      id: 5,
+      name: 'Алена Ильина',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['Photoshop'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+     {
+      id: 6,
+      name: 'Максим Ильин',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['UI/UX Design', 'Photoshop'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+     {
+      id: 7,
+      name: 'Фидан Магеррамова',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['Пеку тортики'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+     {
+      id: 8,
+      name: 'Валя Тян',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['я не ем собак'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+    {
+      id: 9,
+      name: 'Ксения Быкова',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['Рисую интимные картины'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+     {
+      id: 10,
+      name: 'Максим Ильин',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['UI/UX Design', 'Photoshop'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+    {
+      id: 11,
+      name: 'Максим Ильин',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['UI/UX Design', 'Photoshop'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
+     {
+      id: 12,
+      name: 'Максим Ильин',
+      avatar: 'assets/user2.jpg',
+      online: false,
+      skills: ['UI/UX Design', 'Photoshop'],
+      lastSeen: new Date(Date.now() - 3600000)
+    },
   ];
 
   get isSearching(): boolean {
