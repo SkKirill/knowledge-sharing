@@ -1,22 +1,21 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(145deg, #fff, #e9f4f9);
+  background: linear-gradient(145deg, #fff, #c2e7f8);
   font-family: Roboto, sans-serif;
   max-height: 700px;
-  max-width: 1100px;
-
-  
+  max-width: 1100px; 
 }
 
 .chat-header {
   display: flex;
   align-items: center;
   padding: 16px;
-  background-color: #ffffffcc;
-  border-bottom: 1px solid rgba(0, 154, 243, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(145deg, #fff, #e9f4f9);
+  border-bottom: 1px solid rgba(0, 154, 243, 0.294);
+  box-shadow: 0 1px 10px rgba(174, 223, 255, 0.81);
   z-index: 1;
+  color: #009AF3;
 }
 
 .chat-avatar {
@@ -268,7 +267,7 @@
 .emoji-picker {
   position: absolute;
   bottom: 60px;
-  left: 0;
+  left: 340px;
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;

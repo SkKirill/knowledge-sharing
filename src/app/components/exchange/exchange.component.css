@@ -12,8 +12,8 @@
 
 .sidebar {
   width: 360px;
-  background: #fff;
-  border-right: 1px solid #ddd;
+  background: linear-gradient(145deg, #fff, #8cd8fc);
+  border-right: 1px solid #8cd8fc;
   display: flex;
   flex-direction: column;
 }
@@ -22,11 +22,11 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #8cd8fc;
 }
 
 .search-bar mat-icon {
-  color: #888;
+  color: #0096db;
 }
 
 .search-bar input {
