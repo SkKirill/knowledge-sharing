@@ -339,3 +339,28 @@
     width: 100%;
   }
 }
+.delete-account-section {
+  text-align: right;
+}
+
+.delete-account-section button {
+  background-color: #fa7575;
+  color: white;
+}
+
+.delete-account-section button:hover {
+  background-color: #e51111;
+}
+.snackbar-style {
+  background-color: #d32f2f;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 12px 24px;
+}
+
+
+.change-password-section{
+  padding-bottom: 10px;
+  text-align: right;
+}

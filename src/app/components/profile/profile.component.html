@@ -244,13 +244,29 @@
       </mat-card>
     </div>
 
-    <!-- Кнопка сохранения -->
-    <div class="save-section">
-      <button mat-raised-button color="primary" 
-              (click)="saveProfile()"
-              [disabled]="!isFormValid()">
-        <mat-icon>save</mat-icon> Сохранить изменения
-      </button>
-    </div>
+<!-- Кнопка изменения пароля -->
+<div class="change-password-section">
+  <button mat-stroked-button color="primary" (click)="openChangePasswordDialog()">
+    <mat-icon>lock_open</mat-icon>
+    Изменить пароль
+  </button>
+</div>
+
+<!-- Кнопка удаления аккаунта -->
+<div class="delete-account-section">
+  <button mat-stroked-button color="warn" (click)="openDeleteDialog()">
+    <mat-icon>delete_forever</mat-icon>
+    Удалить аккаунт
+  </button>
+</div>
+
+<!-- Секция сохранения -->
+<div class="save-section">
+  <button mat-raised-button color="primary"
+          (click)="saveProfile()"
+          [disabled]="!isFormValid()">
+    <mat-icon>save</mat-icon> Сохранить изменения
+  </button>
+</div>
   </mat-card>
 </div>
