@@ -49,7 +49,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: #e5ddd5;
+  background-color: #ddf3fa;
 }
 
 .empty-chat {
@@ -58,11 +58,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #999;
+  color: #008bb2bf;
   font-size: 18px;
 }
 
 .empty-chat mat-icon {
-  font-size: 80px;
-  margin-bottom: 20px;
+  height: 40px;
+  width: 40px;
+  font-size: 35px;
+ 
 }

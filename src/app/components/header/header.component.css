@@ -54,3 +54,24 @@ mat-toolbar {
 mat-button {
   color: #FFFFFF; /* Белый текст для кнопок */
 }
+.logo-button {
+  padding: 0;
+  min-width: auto;
+  height: 40px;
+}
+
+.logo-icon {
+  max-height: 32px;
+  width: auto;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.logo-button:hover .logo-icon {
+  transform: scale(1.05);
+}
+
+/* Если вы хотите анимацию при клике */
+.logo-button:active .logo-icon {
+  transform: scale(0.98);
+}
