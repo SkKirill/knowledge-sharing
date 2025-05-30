@@ -84,17 +84,18 @@
         <!-- Контактная информация -->
         <div class="contact-info">
           <mat-form-field appearance="fill" class="phone-field">
-            <mat-label>Телефон </mat-label>
+            <mat-label>Телефон</mat-label>
             <input matInput type="tel" 
                   [(ngModel)]="phoneDisplay"
                   (input)="onPhoneInput($event)"
-                  (keydown.backspace)="onPhoneBackspace($event)"  
+                  (keydown.backspace)="onPhoneBackspace($event)"
+                  (click)="moveCursorToNextEmpty($event)"
                   placeholder="+7(___) ___-__-__"
                   name="phone"
                   required
                   #phoneInput="ngModel">
             <mat-error *ngIf="phoneInput.errors?.['required']">Обязательное поле</mat-error>
-            <mat-error *ngIf="phoneInput.value && !isPhoneValid()">Неверный формат</mat-error>
+            <mat-error *ngIf="phoneInput.value && !isPhoneValid()">Неверный формат телефона</mat-error>
           </mat-form-field>
           
           <mat-form-field appearance="fill">

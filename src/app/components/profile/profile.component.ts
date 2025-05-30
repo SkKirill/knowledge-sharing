@@ -184,9 +184,11 @@ export class ProfileComponent {
   }
 
   // --- Телефон ---
-  isPhoneValid(): boolean {
-    return this.phoneModel.length === 11;
-  }
+isPhoneValid(): boolean {
+  // Проверяем что все цифры заполнены (нет подчеркиваний в шаблоне)
+  return !this.phoneDisplay.includes('_') && 
+         this.phoneModel.length === 11;
+}
 
   findNextDigitPosition(currentPos: number): number {
     const underscores = [4,5,6,9,10,11,13,14,16,17];
@@ -216,42 +218,131 @@ export class ProfileComponent {
     return str.substring(0, pos) + '_' + str.substring(pos + 1);
   }
 
-  onPhoneInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const position = input.selectionStart || 0;
-    const key = (event as InputEvent).data;
+// Исправленный метод onPhoneInput
+onPhoneInput(event: Event) {
+  const input = event.target as HTMLInputElement;
+  const position = input.selectionStart || 0;
+  const key = (event as InputEvent).data;
 
-    if (key && /\d/.test(key)) {
-      const nextPos = this.findNextDigitPosition(position);
-      if (nextPos !== -1) {
-        this.phoneDisplay = this.insertDigit(this.phoneDisplay, nextPos, key);
-        this.phoneModel = '7' + this.phoneDisplay.replace(/\D/g, '').substring(1);
-
-        setTimeout(() => {
-          input.setSelectionRange(nextPos + 1, nextPos + 1);
-        });
+  if (key && /\d/.test(key)) {
+    // Находим следующую позицию для цифры
+    const digitPositions = [4,5,6,9,10,11,13,14,16,17];
+    let nextPos = -1;
+    
+    for (const pos of digitPositions) {
+      if (pos >= position && this.phoneDisplay.charAt(pos) === '_') {
+        nextPos = pos;
+        break;
       }
     }
-  }
 
-  onPhoneBackspace(event: Event) {
-    const keyboardEvent = event as KeyboardEvent;
-    const input = keyboardEvent.target as HTMLInputElement;
-    const position = (input.selectionStart || 0) - 1;
-
-    if (position >= 3) {
-      const prevPos = this.findPrevDigitPosition(position);
-      if (prevPos !== -1) {
-        this.phoneDisplay = this.replaceWithUnderscore(this.phoneDisplay, prevPos);
-        this.phoneModel = '7' + this.phoneDisplay.replace(/\D/g, '').substring(1);
-
-        setTimeout(() => {
-          input.setSelectionRange(prevPos, prevPos);
-        });
+    if (nextPos === -1) {
+      // Если не нашли позицию справа, ищем слева
+      for (const pos of digitPositions) {
+        if (pos < position && this.phoneDisplay.charAt(pos) === '_') {
+          nextPos = pos;
+          break;
+        }
       }
     }
-    keyboardEvent.preventDefault();
+
+    if (nextPos !== -1) {
+      // Вставляем цифру
+      this.phoneDisplay = this.insertDigit(this.phoneDisplay, nextPos, key);
+      
+      // Обновляем модель (только цифры)
+      const digits = this.phoneDisplay.match(/\d/g) || [];
+      this.phoneModel = digits.join('');
+      
+      // Перемещаем курсор
+      setTimeout(() => {
+        input.setSelectionRange(nextPos + 1, nextPos + 1);
+      });
+    }
   }
+}
+
+// Исправленный метод onPhoneBackspace
+onPhoneBackspace(event: Event) {  // Изменено с Event на KeyboardEvent
+  const input = event.target as HTMLInputElement;
+  const position = input.selectionStart || 0;
+
+  if (position > 3) { // Не даем удалить +7
+    const digitPositions = [17,16,14,13,11,10,9,6,5,4];
+    let prevPos = -1;
+    
+    for (const pos of digitPositions) {
+      if (pos < position && this.phoneDisplay.charAt(pos) !== '_') {
+        prevPos = pos;
+        break;
+      }
+    }
+
+    if (prevPos !== -1) {
+      this.phoneDisplay = this.replaceWithUnderscore(this.phoneDisplay, prevPos);
+      this.updatePhoneModel();
+      
+      setTimeout(() => {
+        input.setSelectionRange(prevPos, prevPos);
+      });
+    }
+  }
+  
+  event.preventDefault();
+}
+
+// Новый метод для обновления модели
+private updatePhoneModel() {
+  const digits = this.phoneDisplay.match(/\d/g) || [];
+  this.phoneModel = digits.join('');
+}
+
+
+ngOnInit() {
+  if (this.phoneModel) {
+    this.formatPhoneFromModel();
+  }
+}
+
+formatPhoneFromModel() {
+  if (!this.phoneModel) return;
+  
+  // Начинаем с шаблона
+  let formatted = '+7(___) ___-__-__';
+  const digits = this.phoneModel.replace(/\D/g, '').split('');
+  
+  // Позиции для цифр в шаблоне
+  const positions = [4,5,6,9,10,11,13,14,16,17];
+  
+  // Вставляем цифры из модели
+  digits.forEach((digit, index) => {
+    if (index < positions.length) {
+      const pos = positions[index];
+      formatted = formatted.substring(0, pos) + digit + formatted.substring(pos + 1);
+    }
+  });
+  
+  this.phoneDisplay = formatted;
+}
+
+moveCursorToNextEmpty(event: MouseEvent) {
+  const input = event.target as HTMLInputElement;
+  const position = input.selectionStart || 0;
+  
+  // Находим следующую пустую позицию
+  const underscores = [4,5,6,9,10,11,13,14,16,17];
+  let nextEmpty = underscores.find(pos => pos >= position && this.phoneDisplay.charAt(pos) === '_');
+  
+  if (nextEmpty === undefined) {
+    nextEmpty = underscores.find(pos => this.phoneDisplay.charAt(pos) === '_');
+  }
+  
+  if (nextEmpty !== undefined) {
+    setTimeout(() => {
+      input.setSelectionRange(nextEmpty, nextEmpty);
+    });
+  }
+}
 
   // --- Управление фотографиями ---
   onFileSelected(event: Event) {

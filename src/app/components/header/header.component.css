@@ -7,17 +7,20 @@ mat-toolbar-row {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-/* Дополнительные стили для кнопок, если нужно */
-mat-button {
-  margin: 0 8px; /* Добавьте отступы между кнопками */
+/* Стили для кнопок */
+button[mat-button] {   
+  margin: 0 8px;
+  font-size: 16px; /* Увеличенный размер текста */
+  white-space: nowrap; /* Предотвращаем перенос текста */
 }
 
 .logo {
-  height: 30px; /* Измените высоту по своему усмотрению */
-  margin: 0 16px; /* Добавьте отступы */
-  display: block; /* Убедитесь, что элемент отображается как блочный */
+  height: 40px; /* Увеличенный размер логотипа */
+  margin: 0 16px;
+  display: block;
 }
 
 mat-toolbar {
@@ -25,35 +28,82 @@ mat-toolbar {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-
+  z-index: 1000;  
+  
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(3px);
   color: #FFFFFF;
-  font-size: 30px;
+  font-size: 24px; /* Базовый размер шрифта */
   border: 1px solid #444;
   border-radius: 8px;
-
-  /* Базовые отступы */
-  padding-left: 140px;
-  padding-right: 140px;
+  
+  /* Адаптивные отступы */
+  padding-left: 9%;
+  padding-right: 9%;
+  min-height: 64px; /* Минимальная высота */
 }
 
-/* Адаптация под маленькие экраны */
-@media (max-width: 768px) {
+/* Планшеты и маленькие ноутбуки */
+@media (max-width: 1024px) {
   mat-toolbar {
-    padding-left: 16px;
-    padding-right: 16px;
+    font-size: 20px;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  
+  button[mat-button] {
+    font-size: 16px;
+    margin: 0 6px;
+  }
+  
+  .logo {
+    height: 35px;
   }
 }
 
-.header-wrapper {
-
+/* Мобильные устройства */
+@media (max-width: 768px) {
+  mat-toolbar {
+    font-size: 18px;
+    padding-left: 2%;
+    padding-right: 2%;
+    min-height: 56px;
+  }
+  
+  button[mat-button] {
+    font-size: 14px;
+    margin: 0 4px;
+    padding: 0 8px; /* Уменьшаем отступы внутри кнопок */
+  }
+  
+  .logo {
+    height: 30px;
+    margin: 0 8px;
+  }
+  
+  /* Скрываем некоторые элементы на очень маленьких экранах */
+  .hidden-mobile {
+    display: none !important;
+  }
 }
 
-mat-button {
-  color: #FFFFFF; /* Белый текст для кнопок */
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+  mat-toolbar {
+    font-size: 16px;
+  }
+  
+  button[mat-button] {
+    font-size: 12px;
+    margin: 0 2px;
+    padding: 0 4px;
+  }
+  
+  .logo {
+    height: 25px;
+  }
 }
+
 .logo-button {
   padding: 0;
   min-width: auto;
@@ -71,7 +121,25 @@ mat-button {
   transform: scale(1.05);
 }
 
-/* Если вы хотите анимацию при клике */
 .logo-button:active .logo-icon {
   transform: scale(0.98);
+}
+
+/* Дополнительные классы для адаптации */
+.hidden-mobile {
+  display: inline-block;
+}
+
+.mobile-menu-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: inline-block;
+  }
+  
+  .desktop-menu {
+    display: none;
+  }
 }
