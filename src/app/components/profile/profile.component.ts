@@ -12,6 +12,17 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { TemplateRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+interface Address {
+  country: string;
+  city: string;
+  street?: string;
+  houseNumber?: string;
+  apartment?: string;
+}
 
 // Интерфейс знаний
 interface KnowledgeItem {
@@ -128,7 +139,8 @@ export class ChangePasswordDialogComponent {
     MatSnackBarModule,
     MatDialogModule,
     DeleteAccountDialogComponent,
-    ChangePasswordDialogComponent // ✅ Добавлено
+    ChangePasswordDialogComponent, 
+    ReactiveFormsModule
   ],
   providers: [MatDialog] // ✅ Провайдер диалога
 })
@@ -164,12 +176,72 @@ export class ProfileComponent {
     }
   ];
 
+    @ViewChild('addressDialog') addressDialog!: TemplateRef<any>;
+  
+  address: Address = {
+    country: '',
+    city: '',
+    street: '',
+    houseNumber: '',
+    apartment: ''
+  };
+
+  addressForm: FormGroup;
+
   constructor(
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private fb: FormBuilder
+  ) {
 
-  // --- Валидация формы ---
+     this.addressForm = this.fb.group({
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      street: [''],
+      houseNumber: [''],
+      apartment: ['']
+    });
+  }
+
+   // Новые методы для работы с адресом
+  openAddressDialog(): void {
+    // Заполняем форму текущими значениями адреса
+    this.addressForm.patchValue(this.address);
+    
+    const dialogRef = this.dialog.open(this.addressDialog, {
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.saveAddress();
+      }
+    });
+  }
+
+  saveAddress(): void {
+    if (this.addressForm.valid) {
+      this.address = this.addressForm.value;
+      this.showSnackbar('Адрес успешно сохранен');
+    }
+  }
+
+  getFormattedAddress(): string {
+    if (!this.address.country && !this.address.city) {
+      return 'Нажмите';
+    }
+    
+    const parts = [
+      this.address.country,
+      this.address.city,
+      this.address.street,
+      this.address.houseNumber ? `д. ${this.address.houseNumber}` : '',
+      this.address.apartment ? `кв. ${this.address.apartment}` : ''
+    ];
+    
+    return parts.filter(p => p).join(', ');
+  }
+
   isFormValid(): boolean {
     return (
       !!this.firstName &&
@@ -179,7 +251,9 @@ export class ProfileComponent {
       this.knowledgeCategories[0].items.length > 0 &&
       this.knowledgeCategories[1].items.length > 0 &&
       this.phoneModel.length === 11 &&
-      this.photos.length > 0
+      this.photos.length > 0 &&
+      !!this.address.country && 
+      !!this.address.city 
     );
   }
 

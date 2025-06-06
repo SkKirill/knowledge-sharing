@@ -107,6 +107,66 @@
       </div>
     </div>
 
+
+  <!-- ... предыдущий код остается без изменений до contact-info ... -->
+ <div class="address-wrapper">
+  <!-- Контактная информация -->
+  <div class="contact-info">
+    <!-- ... существующие поля телефона и email ... -->
+ 
+    <!-- Строка с адресом -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Адрес</mat-label>
+      <input matInput [value]="getFormattedAddress()" readonly (click)="openAddressDialog()">
+    </mat-form-field>
+  </div>
+</div>
+
+<!-- Диалоговое окно для ввода адреса -->
+<ng-template #addressDialog>
+  <h2 mat-dialog-title>Введите адрес</h2>
+  <mat-dialog-content>
+    <form [formGroup]="addressForm">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Страна </mat-label>
+        <input matInput formControlName="country" required>
+        <mat-error>Обязательное поле</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Город </mat-label>
+        <input matInput formControlName="city" required>
+        <mat-error>Обязательное поле</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Улица</mat-label>
+        <input matInput formControlName="street">
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Дом</mat-label>
+          <input matInput formControlName="houseNumber" type="number">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="half-width">
+          <mat-label>Квартира</mat-label>
+          <input matInput formControlName="apartment" type="number">
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Отмена</button>
+    <button mat-button color="primary" 
+            [disabled]="!addressForm.valid"
+            (click)="saveAddress()">Сохранить</button>
+  </mat-dialog-actions>
+</ng-template>
+
+
+
     <!-- Поле "О себе" на всю ширину -->
     <div class="about-section">
       <mat-form-field appearance="fill" class="full-width">

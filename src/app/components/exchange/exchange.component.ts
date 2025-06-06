@@ -49,47 +49,47 @@ export class ExchangeComponent {
       name: 'Кирилл Скоморохов',
       avatar: 'assets/user1.jpg',
       online: true,
-      skills: ['Angular', 'TypeScript'],
+      skills: ['Архитектура баз данных'],
       lastSeen: new Date()
     },
     {
       id: 2,
-      name: 'Максим Ильин',
+      name: 'Соня Татаринова',
       avatar: 'assets/user2.jpg',
       online: false,
-      skills: ['UI/UX Design', 'Photoshop'],
+      skills: ['Танцы', 'Бухгалетрия'],
       lastSeen: new Date(Date.now() - 3600000)
     },
     {
       id: 3,
-      name: 'Екатерина Воронова',
+      name: 'Арина Губина',
       avatar: 'assets/user3.jpg',
       online: true,
-      skills: ['Node.js', 'Express', 'MongoDB'],
+      skills: ['Сексолог', 'Сон'],
       lastSeen: new Date(Date.now() - 600000)
     },
      {
       id: 4,
-      name: 'Николай Ильин',
+      name: 'Георгий Кузнецов',
       avatar: 'assets/user2.jpg',
       online: false,
-      skills: ['UI/UX Design', 'Photoshop'],
+      skills: ['Механик', 'Photoshop'],
       lastSeen: new Date(Date.now() - 3600000)
     },
      {
       id: 5,
-      name: 'Алена Ильина',
+      name: 'Иван Кузнецов',
       avatar: 'assets/user2.jpg',
       online: false,
-      skills: ['Photoshop'],
+      skills: ['футбол'],
       lastSeen: new Date(Date.now() - 3600000)
     },
      {
       id: 6,
-      name: 'Максим Ильин',
+      name: 'Артем Мельников',
       avatar: 'assets/user2.jpg',
       online: false,
-      skills: ['UI/UX Design', 'Photoshop'],
+      skills: ['Программирование', 'Йога'],
       lastSeen: new Date(Date.now() - 3600000)
     },
      {
@@ -113,7 +113,7 @@ export class ExchangeComponent {
       name: 'Ксения Быкова',
       avatar: 'assets/user2.jpg',
       online: false,
-      skills: ['Рисую интимные картины'],
+      skills: ['UI/UX Design'],
       lastSeen: new Date(Date.now() - 3600000)
     },
      {

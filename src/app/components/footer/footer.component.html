@@ -5,61 +5,11 @@
 
   <section class="footer-links">
     <a routerLink="/about">О проекте</a>
-    <a routerLink="/faq">FAQ</a>
     <a routerLink="/contact">Контакты</a>
-    <a routerLink="/privacy-policy">Политика конфиденциальности</a>
-    <a routerLink="/privacy-policy">Политика обработки данных</a>
   </section>
 
   <section class="footer-copy">
     <p>&copy; 2025 Обмен Знаниями & Умениями.</p>
   </section>
-
-<div class="footer-location">
-  <button class="location-btn" (click)="showLocationModal()">
-    <span class="location-icon"><mat-icon> place</mat-icon></span>
-    <span class="location-text">{{ locationSettings.displayLocation }}</span>
-  </button>
-</div>
-
-  <!-- Модальное окно -->
-  <div class="modal-overlay" #locationModal>
-    <div class="modal">
-      <button class="modal-close" (click)="closeLocationModal()">✖</button>
-      <h2>Где вы находитесь?</h2>
-      <p>Вы увидите сначала людей, находящихся поблизости </p>
-
-      <div class="modal-section">
-        <strong>Текущее местоположение</strong>
-        <p>{{ locationSettings.currentLocation }}</p>
-      </div>
-
-      <div class="modal-section">
-        <strong>Метод определения</strong>
-        <div class="radio-group">
-          <label>
-            <input type="radio" name="method" [(ngModel)]="locationSettings.method" value="auto" (change)="detectLocation()">
-            Автоматически
-          </label>
-          <label>
-            <input type="radio" name="method" [(ngModel)]="locationSettings.method" value="manual">
-            Вручную
-          </label>
-        </div>
-      </div>
-
-      <div class="modal-section" *ngIf="locationSettings.method === 'manual'">
-        <mat-form-field appearance="outline">
-          <mat-label>Выберите регион</mat-label>
-          <mat-select [(ngModel)]="locationSettings.manualLocation">
-            <mat-option *ngFor="let region of regions" [value]="region">
-              {{ region }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <button class="modal-apply" (click)="applyLocationSettings()">Применить</button>
-    </div>
-  </div>
+      
 </footer>
